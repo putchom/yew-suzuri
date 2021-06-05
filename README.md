@@ -9,18 +9,12 @@ Follow the instructions at https://www.rust-lang.org/tools/install and follow th
 ### 2. Build
 
 ```
-wasm-pack build --target web
+wasm-pack build --target web --out-name wasm --out-dir ./static
 ```
 
-### 3. Bundle
+### 3. Run
 
 ```
-npm run build
-```
-
-### 4. Run
-
-```
-cargo install see
-see start -b 8080
+cargo install miniserve
+miniserve ./static --index index.html
 ```

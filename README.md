@@ -9,7 +9,7 @@ Follow the instructions at https://www.rust-lang.org/tools/install and follow th
 ### 2. Build
 
 ```
-wasm-pack build --target web --out-name wasm --out-dir ./static
+wasm-pack build --target web --out-name wasm --out-dir ./static/pkg
 ```
 
 ### 3. Run

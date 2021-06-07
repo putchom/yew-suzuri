@@ -1,15 +1,29 @@
 use serde::Deserialize;
 use wasm_bindgen::prelude::*;
 use yew::{
-  format::{Json, Nothing},
-  html,
-  services::fetch::{FetchService, FetchTask, Request, Response},
-  App, Component, ComponentLink, Html,
+  format::{
+    Json,
+    Nothing
+  },
+  prelude::*,
+  services::{
+    fetch::{
+      FetchService,
+      FetchTask,
+      Request,
+      Response
+    }
+  }
 };
 
 #[derive(Deserialize, Debug, Clone)]
+pub struct Product {
+  title: String
+}
+
+#[derive(Deserialize, Debug, Clone)]
 pub struct ResponseData {
-  title: String,
+  products: Vec<Product>,
 }
 
 #[derive(Debug)]
@@ -34,7 +48,7 @@ impl Model {
       Some(ref res) => {
         html! {
           <>
-            <p>{&res.title}</p>
+            <p>{&res.products[0].title}</p>
           </>
         }
       }
@@ -86,7 +100,8 @@ impl Component for Model {
   fn update(&mut self, msg: Self::Message) -> bool {
     match msg {
       Msg::StartFetch => {
-        let request = Request::get("https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty")
+        let request = Request::get("https://suzuri.jp/api/v1/products?userName=surisurikun")
+        .header("Authorization", "Bearer hoge")
         .body(Nothing)
         .expect("Could not build request.");
 
@@ -95,10 +110,7 @@ impl Component for Model {
 
             match data {
               Ok(data) => Msg::SuccessFetch(data),
-              Err(_) => {
-                log::info!("{:?}", data);
-                Msg::FailFetch
-              }
+              Err(_) => Msg::FailFetch,
             }
           },
         );

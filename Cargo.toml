@@ -1,6 +1,9 @@
 [package]
 name = "yew-suzuri"
 version = "0.1.0"
+description = "SUZURI"
+repository = "https://github.com/putchom/yew-suzuri"
+license-file = "LICENSE"
 authors = ["putchom <putchom8@gmail.com>"]
 edition = "2018"
 

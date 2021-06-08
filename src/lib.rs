@@ -1,4 +1,6 @@
 use serde::Deserialize;
+use std::env;
+use std::panic;
 use wasm_bindgen::prelude::*;
 use yew::{
   format::{
@@ -100,8 +102,20 @@ impl Component for Model {
   fn update(&mut self, msg: Self::Message) -> bool {
     match msg {
       Msg::StartFetch => {
+        let key = "API_KEY";
+        let api_key = match env::var(key) {
+          Ok(val) => {
+            println!("{}", "Success!");
+            val
+          },
+          Err(e) => {
+            println!("{}", e);
+            "".to_string()
+          },
+        };
+        let authorization_value = format!("{} {}", "Bearer", api_key);
         let request = Request::get("https://suzuri.jp/api/v1/products?userName=surisurikun")
-        .header("Authorization", "Bearer hoge")
+        .header("Authorization", authorization_value)
         .body(Nothing)
         .expect("Could not build request.");
 
@@ -157,5 +171,6 @@ impl Component for Model {
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
+  panic::set_hook(Box::new(console_error_panic_hook::hook));
   App::<Model>::new().mount_to_body();
 }

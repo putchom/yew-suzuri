@@ -1,3 +1,5 @@
+mod model;
+
 use serde::Deserialize;
 use std::env;
 use yew::{
@@ -17,13 +19,8 @@ use yew::{
 };
 
 #[derive(Deserialize, Debug, Clone)]
-pub struct Product {
-  title: String
-}
-
-#[derive(Deserialize, Debug, Clone)]
 pub struct ResponseData {
-  products: Vec<Product>,
+  products: Vec<model::product::Product>,
 }
 
 #[derive(Debug)]

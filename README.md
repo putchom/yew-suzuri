@@ -1,4 +1,4 @@
-# yew-todo
+# yew-suzuri
 
 ## Development
 

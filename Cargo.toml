@@ -1,5 +1,5 @@
 [package]
-name = "yew-todo"
+name = "yew-suzuri"
 version = "0.1.0"
 authors = ["putchom <putchom8@gmail.com>"]
 edition = "2018"

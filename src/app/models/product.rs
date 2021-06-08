@@ -12,8 +12,26 @@ use yew::{
 };
 
 #[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Item {
+  pub humanize_name: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Material {
+  pub title: String,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct Product {
-  pub title: String
+  pub title: String,
+  pub sample_image_url: String,
+  pub sample_url: String,
+  pub price_with_tax: i32,
+  pub item: Item,
+  pub material: Material
 }
 
 impl Product {

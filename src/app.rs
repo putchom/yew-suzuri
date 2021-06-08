@@ -1,18 +1,15 @@
 mod model;
 
 use serde::Deserialize;
-use std::env;
 use yew::{
   format::{
     Json,
-    Nothing
   },
   prelude::*,
   services::{
     fetch::{
       FetchService,
       FetchTask,
-      Request,
       Response
     }
   }
@@ -97,23 +94,7 @@ impl Component for App {
   fn update(&mut self, msg: Self::Message) -> bool {
     match msg {
       Msg::StartFetch => {
-        let key = "API_KEY";
-        let api_key = match env::var(key) {
-          Ok(val) => {
-            println!("{}", "Success!");
-            val
-          },
-          Err(e) => {
-            println!("{}", e);
-            "".to_string()
-          },
-        };
-        let authorization_value = format!("{} {}", "Bearer", api_key);
-        let request = Request::get("https://suzuri.jp/api/v1/products?userName=surisurikun")
-        .header("Authorization", authorization_value)
-        .body(Nothing)
-        .expect("Could not build request.");
-
+        let request = model::product::Product::get_product_list("surisurikun");
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 

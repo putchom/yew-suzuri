@@ -6,13 +6,18 @@
 
 Follow the instructions at https://www.rust-lang.org/tools/install and follow the `installation` link at [`wasm-pack`](https://github.com/rustwasm/wasm-pack).
 
-### 2. Build
+### 2. Environment vairables
+
+Copy `.env.example` to create `.env`.
+Enter the api key of the application you created at https://suzuri.jp/developer/apps into the `API_KEY` field in `.env`.
+
+### 3. Build
 
 ```
 wasm-pack build --target web --out-name wasm --out-dir ./static
 ```
 
-### 3. Run
+### 4. Run
 
 ```
 cargo install miniserve

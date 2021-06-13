@@ -15,7 +15,8 @@ use yew::{
     }
   }
 };
-use nachiguro::Heading;
+
+use nachiguro::{Col, Container, Heading, Row};
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct ResponseData {
@@ -43,28 +44,30 @@ impl App {
     match self.data {
       Some(ref res) => {
         html! {
-          <div>
-            { for res.products.iter().map( |product|
-              html! {
-                <>
-                  <a href=format!("{}", product.sample_url)>
-                    <img src=format!("{}", product.sample_image_url) />
-                  </a>
-                  <div>
+          <Container>
+            <Row>
+              { for res.products.iter().map( |product|
+                html! {
+                  <Col col_m={3}>
                     <a href=format!("{}", product.sample_url)>
-                      { format!("{}", product.material.title) }
+                      <img src=format!("{}", product.sample_image_url) />
                     </a>
                     <div>
-                      { format!("{}", product.item.humanize_name) }
+                      <a href=format!("{}", product.sample_url)>
+                        { format!("{}", product.material.title) }
+                      </a>
+                      <div>
+                        { format!("{}", product.item.humanize_name) }
+                      </div>
+                      <div>
+                        { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }
+                      </div>
                     </div>
-                    <div>
-                      { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }
-                    </div>
-                  </div>
-                </>
-              })
-            }
-          </div>
+                  </Col>
+                })
+              }
+            </Row>
+          </Container>
         }
       }
       None => {
@@ -144,7 +147,7 @@ impl Component for App {
   fn view(&self) -> Html {
     html! {
       <div>
-        <Heading level=1 size={"s"}>{ "SUZURI" }</Heading>
+        <Heading level=1 size={"l"}>{ "SUZURI" }</Heading>
         <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
         {
           match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {

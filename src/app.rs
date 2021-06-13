@@ -15,6 +15,7 @@ use yew::{
     }
   }
 };
+use nachiguro::Heading;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct ResponseData {
@@ -143,6 +144,7 @@ impl Component for App {
   fn view(&self) -> Html {
     html! {
       <div>
+        <Heading level=1 size={"s"}>{ "SUZURI" }</Heading>
         <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
         {
           match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {

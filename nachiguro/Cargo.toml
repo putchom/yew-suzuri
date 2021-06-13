@@ -1,0 +1,18 @@
+[package]
+name = "nachiguro"
+version = "0.1.0"
+authors = ["putchom <putchom8@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/putchom/yew-suzuri"
+description = "Yew wrapper for Nachiguro Web Components"
+
+[dependencies]
+wasm-bindgen = "0.2.74"
+yew = "0.18.0"
+
+[features]
+heading = []
+full = [
+  "heading"
+]
+default = ["full"]

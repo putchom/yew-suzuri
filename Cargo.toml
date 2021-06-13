@@ -13,6 +13,7 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 anyhow = "1.0.40"
 console_error_panic_hook = "0.1.6"
+nachiguro = { path = "nachiguro", features = ["full"] }
 num-format = "0.4.0"
 serde = "1.0.126"
 wasm-bindgen = "0.2.74"

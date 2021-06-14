@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
   output: {
     filename: "main.js",
@@ -29,4 +30,10 @@ module.exports = {
       filename: "style.css",
     }),
   ],
+  devServer: {
+    contentBase: path.join(__dirname, 'static'),
+    compress: true,
+    port: 8080,
+    historyApiFallback: true,
+  }
 };

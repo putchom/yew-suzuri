@@ -1,3 +1,8 @@
+#[cfg(feature = "app-bar")]
+pub mod app_bar;
+#[cfg(feature = "app-bar")]
+pub use app_bar::AppBar;
+
 #[cfg(feature = "col")]
 pub mod col;
 #[cfg(feature = "col")]

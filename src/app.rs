@@ -14,6 +14,7 @@ use yew::{
   }
 };
 use crate::models::product::Product;
+use crate::components::header::Header;
 use crate::components::product_card::ProductCard;
 
 #[derive(Deserialize, Debug, Clone)]
@@ -132,8 +133,11 @@ impl Component for App {
   fn view(&self) -> Html {
     html! {
       <div>
-        <Heading level=1 size={"l"}>{ "SUZURI" }</Heading>
-        <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+        <Header />
+        <Container>
+          <Heading level=1 size={"m"}>{ "アイテムズ" }</Heading>
+        </Container>
+        // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
         {
           match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
             (true, _, _) => {

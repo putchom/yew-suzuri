@@ -10,18 +10,8 @@ use yew::{
     }
   }
 };
-
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Item {
-  pub humanize_name: String,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Material {
-  pub title: String,
-}
+use crate::models::item::Item;
+use crate::models::material::Material;
 
 #[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -32,6 +22,25 @@ pub struct Product {
   pub price_with_tax: i32,
   pub item: Item,
   pub material: Material
+}
+
+impl Default for Product {
+  fn default() -> Self {
+    Self {
+      title: "".to_string(),
+      sample_image_url: "".to_string(),
+      sample_url: "".to_string(),
+      price_with_tax: 0,
+      item: Item { humanize_name: "".to_string() },
+      material: Material { title: "".to_string() },
+    }
+  }
+}
+
+impl PartialEq for Product {
+  fn eq(&self, _other: &Self) -> bool {
+    false
+  }
 }
 
 impl Product {

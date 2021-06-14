@@ -1,4 +1,6 @@
 mod app;
+mod components;
+mod models;
 
 use std::panic;
 use wasm_bindgen::prelude::*;

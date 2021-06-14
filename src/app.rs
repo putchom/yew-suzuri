@@ -1,7 +1,5 @@
-mod models;
-
+use nachiguro::{Col, Container, Heading, Row};
 use serde::Deserialize;
-use num_format::{Locale, ToFormattedString};
 use yew::{
   format::{
     Json,
@@ -15,12 +13,12 @@ use yew::{
     }
   }
 };
-
-use nachiguro::{Col, Container, Heading, Row};
+use crate::models::product::Product;
+use crate::components::product_card::ProductCard;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct ResponseData {
-  products: Vec<models::product::Product>,
+  products: Vec<Product>,
 }
 
 #[derive(Debug)]
@@ -49,20 +47,7 @@ impl App {
               { for res.products.iter().map( |product|
                 html! {
                   <Col col_m={3}>
-                    <a href=format!("{}", product.sample_url)>
-                      <img src=format!("{}", product.sample_image_url) />
-                    </a>
-                    <div>
-                      <a href=format!("{}", product.sample_url)>
-                        { format!("{}", product.material.title) }
-                      </a>
-                      <div>
-                        { format!("{}", product.item.humanize_name) }
-                      </div>
-                      <div>
-                        { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }
-                      </div>
-                    </div>
+                    <ProductCard product={product} />
                   </Col>
                 })
               }
@@ -118,7 +103,7 @@ impl Component for App {
   fn update(&mut self, msg: Self::Message) -> bool {
     match msg {
       Msg::StartFetch => {
-        let request = models::product::Product::get_product_list("surisurikun");
+        let request = Product::get_product_list("surisurikun");
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 

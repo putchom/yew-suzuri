@@ -16,6 +16,6 @@ impl Default for Material {
 
 impl PartialEq for Material {
   fn eq(&self, _other: &Self) -> bool {
-      false
+    false
   }
 }

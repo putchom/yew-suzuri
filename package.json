@@ -1,0 +1,25 @@
+{
+  "name": "yew-suzuri",
+  "version": "1.0.0",
+  "description": "## Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "sass src/style.scss static/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/putchom/yew-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/putchom/yew-todo/issues"
+  },
+  "homepage": "https://github.com/putchom/yew-todo#readme",
+  "devDependencies": {
+    "nachiguro": "github:pepabo/nachiguro",
+    "sass": "^1.35.0"
+  }
+}

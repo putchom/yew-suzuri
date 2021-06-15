@@ -7,6 +7,7 @@
 Follow the instructions at https://www.rust-lang.org/tools/install .
 
 ```sh
+npm install                      # install Sass & Nachiguro
 cargo install wasm-pack          # Compile Rust to Wasm and generate JS interop code
 cargo install cargo-make         # Task runner
 cargo install simple-http-server # Simple server to serve assets

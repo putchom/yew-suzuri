@@ -2,14 +2,9 @@
 
 ## Development
 
-### 1. Install `Rust`, `wasm-pack` and `miniserve`
+### 1. Install `Rust` and `wasm-pack`
 
 Follow the instructions at https://www.rust-lang.org/tools/install and follow the `installation` link at [`wasm-pack`](https://github.com/rustwasm/wasm-pack).
-
-And finally, install miniserve.
-```
-cargo install miniserve
-```
 
 ### 2. Environment vairables
 
@@ -19,6 +14,7 @@ Enter the api key of the application you created at https://suzuri.jp/developer/
 ### 3. Build
 
 ```
+npm i
 npm run build
 ```
 

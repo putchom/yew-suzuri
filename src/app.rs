@@ -12,8 +12,10 @@ use crate::pages::{
   favorite::Favorite,
   home::Home,
   my_shop::MyShop,
+  product_detail::ProductDetail,
   search::Search,
 };
+use crate::route::Route;
 
 pub struct App;
 
@@ -40,53 +42,42 @@ impl Component for App {
       Route::Cart => html! { <Cart /> },
       Route::Favorite => html!{ <Favorite /> },
       Route::MyShop => html! { <MyShop /> },
+      Route::ProductDetail(id) => html! { <ProductDetail id=id /> }
     });
+
+    type Anchor = RouterAnchor<Route>;
 
     html! {
       <>
         <AppBar title="SUZURI">
           <li>
-            <RouterAnchor<Route> route=Route::Home>
+            <Anchor route=Route::Home>
               { "ホーム" }
-            </RouterAnchor<Route>>
+            </Anchor>
           </li>
           <li>
-            <RouterAnchor<Route> route=Route::Search>
+            <Anchor route=Route::Search>
               { "さがす" }
-            </RouterAnchor<Route>>
+            </Anchor>
           </li>
           <li>
-            <RouterAnchor<Route> route=Route::Cart>
+            <Anchor route=Route::Cart>
               { "カート" }
-            </RouterAnchor<Route>>
+            </Anchor>
           </li>
           <li>
-            <RouterAnchor<Route> route=Route::Favorite>
+            <Anchor route=Route::Favorite>
               { "ズッキュン" }
-            </RouterAnchor<Route>>
+            </Anchor>
           </li>
           <li>
-            <RouterAnchor<Route> route=Route::MyShop>
+            <Anchor route=Route::MyShop>
               { "マイショップ" }
-            </RouterAnchor<Route>>
+            </Anchor>
           </li>
         </AppBar>
         <Router<Route, ()> render=render />
       </>
     }
   }
-}
-
-#[derive(Switch, Clone)]
-enum Route {
-  #[to = "/"]
-  Home,
-  #[to = "/search"]
-  Search,
-  #[to = "/cart"]
-  Cart,
-  #[to = "/favorite"]
-  Favorite,
-  #[to = "/myshop"]
-  MyShop,
 }

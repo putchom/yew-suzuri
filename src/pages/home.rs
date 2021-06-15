@@ -28,7 +28,7 @@ pub enum Msg {
 }
 
 pub struct Home {
-  ft: Option<FetchTask>,
+  task: Option<FetchTask>,
   is_loading: bool,
   data: Option<ResponseData>,
   link: ComponentLink<Self>,
@@ -43,7 +43,7 @@ impl Component for Home {
     link.send_message(Msg::StartFetch);
 
     Self {
-      ft: None,
+      task: None,
       is_loading: true,
       data: None,
       link,
@@ -66,7 +66,7 @@ impl Component for Home {
         );
         let task = FetchService::fetch(request, callback).expect("failed to start request");
         self.is_loading = true;
-        self.ft = Some(task)
+        self.task = Some(task)
       }
       Msg::SuccessFetch(response) => {
         self.is_loading = false;

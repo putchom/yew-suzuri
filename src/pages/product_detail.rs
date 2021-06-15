@@ -1,14 +1,23 @@
 use nachiguro::{Container, Heading};
 use yew::prelude::*;
 
-pub struct Search;
+pub struct ProductDetail {
+  props: Props,
+}
 
-impl Component for Search {
+#[derive(Properties, Clone)]
+pub struct Props {
+  pub id: i32,
+}
+
+impl Component for ProductDetail {
   type Message = ();
-  type Properties = ();
+  type Properties = Props;
 
-  fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-    Self
+  fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+    Self {
+      props,
+    }
   }
 
   fn update(&mut self, _msg: Self::Message) -> bool {
@@ -23,7 +32,7 @@ impl Component for Search {
     html! {
       <div>
         <Container>
-          <Heading level=1 size={"m"}>{ "さがす" }</Heading>
+          <Heading level=1 size={"m"}>{ &self.props.id }</Heading>
         </Container>
       </div>
     }

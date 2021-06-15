@@ -3,12 +3,20 @@
 #![allow(unused_imports)]
 
 use crate::models::product::Product;
+use crate::route::Route;
 
-use num_format::{Locale, ToFormattedString};
-
+use num_format::{
+  Locale,
+  ToFormattedString
+};
 use wasm_bindgen::prelude::*;
-use yew::prelude::*;
-use yew::html::{ImplicitClone};
+use yew::{
+  prelude::*,
+  html::{
+    ImplicitClone
+  }
+};
+use yew_router::prelude::*;
 
 pub struct ProductCard {
   props: Props,
@@ -51,6 +59,8 @@ impl Component for ProductCard {
       product,
     } = &self.props;
 
+    type Anchor = RouterAnchor<Route>;
+
     html! {
       <div
         class=classes!(
@@ -58,19 +68,19 @@ impl Component for ProductCard {
           class.clone(),
         )
       >
-        <a
-          class="ncgr-product-card__thumbnail"
-          href=format!("{}", product.sample_url)
+        <Anchor
+          classes="ncgr-product-card__thumbnail"
+          route=Route::ProductDetail(product.id)
         >
           <img class="ncgr-product-card__image" src=format!("{}", product.sample_image_url) />
-        </a>
+        </Anchor>
         <div class="ncgr-product-card__info">
-          <a
-            class="ncgr-product-card__name"
-            href=format!("{}", product.sample_url)
+          <Anchor
+            classes="ncgr-product-card__name"
+            route=Route::ProductDetail(product.id)
           >
             { format!("{}", product.material.title) }
-          </a>
+          </Anchor>
           <div class="ncgr-product-card__item-name">
             { format!("{}", product.item.humanize_name) }
           </div>

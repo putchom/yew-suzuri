@@ -16,6 +16,7 @@ use crate::models::material::Material;
 #[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Product {
+  pub id: i32,
   pub title: String,
   pub sample_image_url: String,
   pub sample_url: String,
@@ -27,6 +28,7 @@ pub struct Product {
 impl Default for Product {
   fn default() -> Self {
     Self {
+      id: 0,
       title: "".to_string(),
       sample_image_url: "".to_string(),
       sample_url: "".to_string(),

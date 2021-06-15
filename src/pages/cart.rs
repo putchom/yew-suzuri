@@ -1,12 +1,5 @@
 use nachiguro::{Container, Heading};
-use serde::Deserialize;
 use yew::prelude::*;
-use crate::models::product::Product;
-
-#[derive(Deserialize, Clone)]
-pub struct ResponseData {
-  products: Vec<Product>,
-}
 
 pub struct Cart;
 

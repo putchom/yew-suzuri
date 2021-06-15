@@ -2,7 +2,7 @@ mod app;
 mod components;
 mod models;
 mod pages;
-mod route;
+mod routes;
 
 use std::panic;
 use wasm_bindgen::prelude::*;

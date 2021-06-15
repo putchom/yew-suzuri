@@ -3,7 +3,7 @@
 #![allow(unused_imports)]
 
 use crate::models::product::Product;
-use crate::route::Route;
+use crate::routes::Route;
 
 use num_format::{
   Locale,

@@ -15,7 +15,7 @@ use crate::pages::{
   product_detail::ProductDetail,
   search::Search,
 };
-use crate::route::Route;
+use crate::routes::Route;
 
 pub struct App;
 

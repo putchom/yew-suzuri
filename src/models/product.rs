@@ -13,7 +13,7 @@ use yew::{
 use crate::models::item::Item;
 use crate::models::material::Material;
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Product {
   pub id: i32,
@@ -25,23 +25,37 @@ pub struct Product {
   pub material: Material
 }
 
+impl Clone for Product {
+  fn clone(&self) -> Self {
+    Self {
+      id: self.id.clone(),
+      title: self.title.clone(),
+      sample_image_url: self.sample_image_url.clone(),
+      sample_url: self.sample_url.clone(),
+      price_with_tax: self.price_with_tax.clone(),
+      item: self.item.clone(),
+      material: self.material.clone(),
+    }
+  }
+}
+
 impl Default for Product {
   fn default() -> Self {
     Self {
       id: 0,
-      title: "".to_string(),
-      sample_image_url: "".to_string(),
-      sample_url: "".to_string(),
+      title: "".into(),
+      sample_image_url: "".into(),
+      sample_url: "".into(),
       price_with_tax: 0,
-      item: Item { humanize_name: "".to_string() },
-      material: Material { title: "".to_string() },
+      item: Item { humanize_name: "".into() },
+      material: Material { title: "".into() },
     }
   }
 }
 
 impl PartialEq for Product {
-  fn eq(&self, _other: &Self) -> bool {
-    false
+  fn eq(&self, other: &Self) -> bool {
+    return self.id == other.id && self.title == other.title && self.sample_image_url == other.sample_image_url && self.sample_url == other.sample_url && self.price_with_tax == other.price_with_tax && self.item == other.item && self.material == other.material;
   }
 }
 

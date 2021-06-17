@@ -1,21 +1,29 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Material {
   pub title: String,
 }
 
+impl Clone for Material {
+  fn clone(&self) -> Self {
+    Self {
+      title: self.title.clone(),
+    }
+  }
+}
+
 impl Default for Material {
   fn default() -> Self {
     Self {
-      title: "".to_string(),
+      title: "".into(),
     }
   }
 }
 
 impl PartialEq for Material {
-  fn eq(&self, _other: &Self) -> bool {
-    false
+  fn eq(&self, other: &Self) -> bool {
+    return self.title == other.title;
   }
 }

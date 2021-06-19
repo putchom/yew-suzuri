@@ -89,7 +89,7 @@ impl Component for Home {
       <div>
         <Container>
           <Heading level=1 size={"m"}>
-            { "ホーム" }
+            { "ピックアップ" }
           </Heading>
         </Container>
         // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
@@ -123,7 +123,7 @@ impl Home {
             <Row>
               { for res.products.iter().map( |product|
                 html! {
-                  <Col col_m={3}>
+                  <Col col={6} col_m={4} col_l={2}>
                     <ProductCard product={product} />
                   </Col>
                 })

@@ -31,12 +31,27 @@ $ncgr-assets-prefix: 'path/to/public/nachiguro/assets/';
 }
 
 // ProductDetail
-.ProductDetail-card {
+.ProductDetail-page {
+  padding-bottom: 1.5rem;
+}
+
+.ProductDetail-product-card {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.ProductDetail-breadcrumbs {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .ProductDetail-description {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.ProductDetail-user-card {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }

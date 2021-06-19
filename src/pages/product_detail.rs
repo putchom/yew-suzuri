@@ -10,6 +10,7 @@ use nachiguro::{
 };
 use serde::Deserialize;
 use crate::models::Product;
+use crate::route::Route;
 use num_format::{
   Locale,
   ToFormattedString
@@ -27,6 +28,7 @@ use yew::{
     }
   }
 };
+use yew_router::prelude::*;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -105,7 +107,7 @@ impl Component for ProductDetailPage {
 
   fn view(&self) -> Html {
     html! {
-      <div>
+      <div class="ProductDetail-page">
         // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
         {
           match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
@@ -130,16 +132,56 @@ impl Component for ProductDetailPage {
 
 impl ProductDetailPage {
   fn success(&self) -> Html {
+    type Anchor = RouterAnchor<Route>;
+
     match self.data {
       Some(ref res) => {
         html! {
           <Container size="l".to_string()>
+            <div class="ProductDetail-breadcrumbs">
+              <ol class="ncgr-breadcrumbs">
+                <li class="ncgr-breadcrumbs__item">
+                  <Anchor
+                    classes="ncgr-breadcrumbs__link"
+                    route=Route::HomePage
+                  >
+                    <span>
+                      { "SUZURI" }
+                    </span>
+                  </Anchor>
+                </li>
+                <li class="ncgr-breadcrumbs__item">
+                  <a class="ncgr-breadcrumbs__link" href="#">
+                    <span>
+                      { format!("{}", res.product.item.humanize_name) }
+                    </span>
+                  </a>
+                </li>
+                <li class="ncgr-breadcrumbs__item">
+                  <a class="ncgr-breadcrumbs__link" href="#">
+                    <span>
+                      { format!("{}", res.product.material.user.name) }
+                    </span>
+                  </a>
+                </li>
+                <li class="ncgr-breadcrumbs__item">
+                  <Anchor
+                    classes="ncgr-breadcrumbs__link ncgr-breadcrumbs__link--active"
+                    route=Route::ProductDetailPage(res.product.id)
+                  >
+                    <span>
+                      { format!("{}", res.product.title) }
+                    </span>
+                  </Anchor>
+                </li>
+              </ol>
+            </div>
             <Row>
               <Col col_m={7}>
                 <Image src=format!("{}", res.product.sample_image_url) />
               </Col>
               <Col col_m={5}>
-                <Card class=classes!("ProductDetail-card") color="secondary-grouped-background".to_string()>
+                <Card class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()>
                   <Container>
                     <Heading level=1 size="m">
                       { format!("{}", res.product.material.title) }
@@ -173,6 +215,26 @@ impl ProductDetailPage {
                 </Card>
               </Col>
             </Row>
+            <Card class=classes!("ProductDetail-user-card")>
+              <Container>
+                <ul>
+                  <li>
+                    <div>
+                      {
+                        match &res.product.material.user.display_name {
+                          Some(display_name) => html! {
+                            { format!("{}", display_name) }
+                          },
+                          None => html! {
+                            { format!("{}", res.product.material.user.name) }
+                          }
+                        }
+                      }
+                    </div>
+                  </li>
+                </ul>
+              </Container>
+            </Card>
           </Container>
         }
       }

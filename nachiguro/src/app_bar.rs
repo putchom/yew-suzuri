@@ -17,7 +17,7 @@ pub struct Props {
   #[prop_or_default]
   pub class: Classes,
   #[prop_or_default]
-  pub title: VNode,
+  pub title: String,
 }
 
 impl Component for AppBar {

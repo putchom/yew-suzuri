@@ -1,4 +1,5 @@
 use nachiguro::{
+  Avatar,
   Card,
   Col,
   Container,
@@ -158,11 +159,14 @@ impl ProductDetailPage {
                   </a>
                 </li>
                 <li class="ncgr-breadcrumbs__item">
-                  <a class="ncgr-breadcrumbs__link" href="#">
+                  <Anchor
+                    classes="ncgr-breadcrumbs__link"
+                    route=Route::UserDetailPage(res.product.material.user.id)
+                  >
                     <span>
                       { format!("{}", res.product.material.user.name) }
                     </span>
-                  </a>
+                  </Anchor>
                 </li>
                 <li class="ncgr-breadcrumbs__item">
                   <Anchor
@@ -220,16 +224,29 @@ impl ProductDetailPage {
                 <ul>
                   <li>
                     <div>
-                      {
-                        match &res.product.material.user.display_name {
-                          Some(display_name) => html! {
-                            { format!("{}", display_name) }
-                          },
-                          None => html! {
-                            { format!("{}", res.product.material.user.name) }
+                      <Anchor
+                        route=Route::UserDetailPage(res.product.material.user.id)
+                      >
+                        <Avatar
+                          src={ format!("{}",
+                            match &res.product.material.user.avatar_url {
+                              Some(avatar_url) => avatar_url,
+                              None => "./icon_default.jpg"
+                            }
+                          )}
+                          size="l"
+                        />
+                        {
+                          match &res.product.material.user.display_name {
+                            Some(display_name) => html! {
+                              { format!("{}", display_name) }
+                            },
+                            None => html! {
+                              { format!("{}", res.product.material.user.name) }
+                            }
                           }
                         }
-                      }
+                      </Anchor>
                     </div>
                   </li>
                 </ul>

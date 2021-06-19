@@ -12,6 +12,7 @@ yew = "0.18.0"
 
 [features]
 app-bar = []
+avatar = []
 card = []
 col = []
 container = []
@@ -22,6 +23,7 @@ row = []
 text-link = []
 full = [
   "app-bar",
+  "avatar",
   "card",
   "col",
   "container",

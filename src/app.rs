@@ -1,7 +1,11 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 use crate::components::Header;
-use crate::pages::{Home, ProductDetailPage};
+use crate::pages::{
+  Home,
+  ProductDetailPage,
+  UserDetailPage
+};
 use crate::route::Route;
 
 pub struct App {}
@@ -27,6 +31,9 @@ impl Component for App {
     let render = Router::render(move |switch: Route| match switch {
       Route::ProductDetailPage(id) => {
         html! {<ProductDetailPage id=id />}
+      }
+      Route::UserDetailPage(id) => {
+        html! {<UserDetailPage id=id />}
       }
       Route::HomePage => {
         html! {<Home />}

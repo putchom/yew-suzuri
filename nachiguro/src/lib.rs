@@ -3,6 +3,11 @@ pub mod app_bar;
 #[cfg(feature = "app-bar")]
 pub use app_bar::AppBar;
 
+#[cfg(feature = "avatar")]
+pub mod avatar;
+#[cfg(feature = "avatar")]
+pub use avatar::Avatar;
+
 #[cfg(feature = "card")]
 pub mod card;
 #[cfg(feature = "card")]

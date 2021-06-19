@@ -2,8 +2,8 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 
-use crate::models::product::Product;
-use crate::routes::Route;
+use crate::models::Product;
+use crate::route::Route;
 
 use num_format::{
   Locale,
@@ -34,23 +34,18 @@ impl Component for ProductCard {
   type Message = ();
   type Properties = Props;
 
-  fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+  fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
     Self {
       props,
     }
   }
 
-  fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-    false
+  fn update(&mut self, _: Self::Message) -> ShouldRender {
+    true
   }
 
-  fn change(&mut self, props: Self::Properties) -> bool {
-    if self.props != props {
-      self.props = props;
-      true
-    } else {
-      false
-    }
+  fn change(&mut self, props: Self::Properties) -> ShouldRender {
+    true
   }
 
   fn view(&self) -> Html {
@@ -70,14 +65,14 @@ impl Component for ProductCard {
       >
         <Anchor
           classes="ncgr-product-card__thumbnail"
-          route=Route::ProductDetail(product.id)
+          route=Route::ProductDetailPage(product.id)
         >
           <img class="ncgr-product-card__image" src=format!("{}", product.sample_image_url) />
         </Anchor>
         <div class="ncgr-product-card__info">
           <Anchor
             classes="ncgr-product-card__name"
-            route=Route::ProductDetail(product.id)
+            route=Route::ProductDetailPage(product.id)
           >
             { format!("{}", product.material.title) }
           </Anchor>

@@ -1,11 +1,13 @@
 use nachiguro::{Col, Container, Heading, Row};
 use serde::Deserialize;
+use crate::components::ProductCard;
+use crate::models::{Product, get_products};
 use yew::{
   format::{
     Json,
   },
   prelude::*,
-  services::{
+    services::{
     fetch::{
       FetchService,
       FetchTask,
@@ -13,8 +15,6 @@ use yew::{
     }
   }
 };
-use crate::models::product::Product;
-use crate::components::product_card::ProductCard;
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {
@@ -39,7 +39,7 @@ impl Component for Home {
   type Message = Msg;
   type Properties = ();
 
-  fn create(_props: Self::Properties, link: ComponentLink<Self>) -> Self {
+  fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
     link.send_message(Msg::StartFetch);
 
     Self {
@@ -51,10 +51,10 @@ impl Component for Home {
     }
   }
 
-  fn update(&mut self, msg: Self::Message) -> bool {
-    match msg {
+  fn update(&mut self, message: Self::Message) -> ShouldRender {
+    match message {
       Msg::StartFetch => {
-        let request = Product::get_product_list("surisurikun");
+        let request = get_products("surisurikun");
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 
@@ -80,7 +80,7 @@ impl Component for Home {
     true
   }
 
-  fn change(&mut self, _props: Self::Properties) -> bool {
+  fn change(&mut self, _: Self::Properties) -> ShouldRender {
     false
   }
 
@@ -88,7 +88,9 @@ impl Component for Home {
     html! {
       <div>
         <Container>
-          <Heading level=1 size={"m"}>{ "ホーム" }</Heading>
+          <Heading level=1 size={"m"}>
+            { "ホーム" }
+          </Heading>
         </Container>
         // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
         {

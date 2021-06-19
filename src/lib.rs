@@ -1,14 +1,16 @@
+#![recursion_limit="256"]
+
+mod api;
 mod app;
 mod components;
-mod models;
 mod pages;
-mod routes;
+mod route;
+mod models;
 
-use std::panic;
 use wasm_bindgen::prelude::*;
+use yew::prelude::*;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
-  panic::set_hook(Box::new(console_error_panic_hook::hook));
-  yew::start_app::<app::App>();
+  App::<app::App>::new().mount_to_body();
 }

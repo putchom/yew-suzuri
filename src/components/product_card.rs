@@ -65,14 +65,14 @@ impl Component for ProductCard {
       >
         <Anchor
           classes="ncgr-product-card__thumbnail"
-          route=Route::ProductDetailPage(product.id)
+          route=Route::ProductDetail(product.id)
         >
           <img class="ncgr-product-card__image" src=format!("{}", product.sample_image_url) />
         </Anchor>
         <div class="ncgr-product-card__info">
           <Anchor
             classes="ncgr-product-card__name"
-            route=Route::ProductDetailPage(product.id)
+            route=Route::ProductDetail(product.id)
           >
             { format!("{}", product.material.title) }
           </Anchor>

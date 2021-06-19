@@ -36,7 +36,7 @@ pub enum Msg {
   FailFetch,
 }
 
-pub struct UserDetailPage {
+pub struct UserDetail {
   props: Props,
   task: Option<FetchTask>,
   is_loading: bool,
@@ -45,7 +45,7 @@ pub struct UserDetailPage {
   error: Option<String>,
 }
 
-impl Component for UserDetailPage {
+impl Component for UserDetail {
   type Message = Msg;
   type Properties = Props;
 
@@ -120,7 +120,7 @@ impl Component for UserDetailPage {
   }
 }
 
-impl UserDetailPage {
+impl UserDetail {
   fn success(&self) -> Html {
     type Anchor = RouterAnchor<Route>;
 

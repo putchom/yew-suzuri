@@ -47,7 +47,7 @@ pub enum Msg {
   FailFetch,
 }
 
-pub struct ProductDetailPage {
+pub struct ProductDetail {
   props: Props,
   task: Option<FetchTask>,
   is_loading: bool,
@@ -56,7 +56,7 @@ pub struct ProductDetailPage {
   error: Option<String>,
 }
 
-impl Component for ProductDetailPage {
+impl Component for ProductDetail {
   type Message = Msg;
   type Properties = Props;
 
@@ -131,7 +131,7 @@ impl Component for ProductDetailPage {
   }
 }
 
-impl ProductDetailPage {
+impl ProductDetail {
   fn success(&self) -> Html {
     type Anchor = RouterAnchor<Route>;
 
@@ -161,7 +161,7 @@ impl ProductDetailPage {
                 <li class="ncgr-breadcrumbs__item">
                   <Anchor
                     classes="ncgr-breadcrumbs__link"
-                    route=Route::UserDetailPage(res.product.material.user.id)
+                    route=Route::UserDetail(res.product.material.user.id)
                   >
                     <span>
                       { format!("{}", res.product.material.user.name) }
@@ -171,7 +171,7 @@ impl ProductDetailPage {
                 <li class="ncgr-breadcrumbs__item">
                   <Anchor
                     classes="ncgr-breadcrumbs__link ncgr-breadcrumbs__link--active"
-                    route=Route::ProductDetailPage(res.product.id)
+                    route=Route::ProductDetail(res.product.id)
                   >
                     <span>
                       { format!("{}", res.product.title) }
@@ -225,7 +225,7 @@ impl ProductDetailPage {
                   <li>
                     <div>
                       <Anchor
-                        route=Route::UserDetailPage(res.product.material.user.id)
+                        route=Route::UserDetail(res.product.material.user.id)
                       >
                         <Avatar
                           src={ format!("{}",

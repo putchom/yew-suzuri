@@ -139,7 +139,7 @@ impl ProductDetailPage {
                 <Image src=format!("{}", res.product.sample_image_url) />
               </Col>
               <Col col_m={5}>
-                <Card color="secondary-grouped-background".to_string()>
+                <Card class=classes!("ProductDetail-card") color="secondary-grouped-background".to_string()>
                   <Container>
                     <Heading level=1 size="m">
                       { format!("{}", res.product.material.title) }
@@ -155,14 +155,14 @@ impl ProductDetailPage {
                     {
                       match &res.product.material.description {
                         Some(description) => html! {
-                          <>
+                          <div class=classes!("ProductDetail-description")>
                             <Heading level=2 size="s">
                               { "このアイテムについて" }
                             </Heading>
                             <Paragraph>
                               { format!("{}", description) }
                             </Paragraph>
-                          </>
+                          </div>
                         },
                         None => html! {
                           <div></div>

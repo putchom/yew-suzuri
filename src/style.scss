@@ -1,2 +1,23 @@
 $ncgr-assets-prefix: 'path/to/public/nachiguro/assets/';
 @import '../node_modules/nachiguro/src/nachiguro';
+
+// Home
+.Home-page {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.Home-heading {
+  margin-bottom: 1rem;
+}
+
+// ProductDetail
+.ProductDetail-card {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.ProductDetail-description {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

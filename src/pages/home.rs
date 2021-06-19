@@ -86,9 +86,9 @@ impl Component for Home {
 
   fn view(&self) -> Html {
     html! {
-      <div>
+      <div class=classes!("Home-page")>
         <Container>
-          <Heading level=1 size={"m"}>
+          <Heading class=classes!("Home-heading") level=1 size={"m"}>
             { "ピックアップ" }
           </Heading>
         </Container>

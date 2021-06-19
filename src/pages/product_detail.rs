@@ -1,4 +1,4 @@
-use nachiguro::{Container};
+use nachiguro::{Card, Col, Container, Heading, Image, Row, TextLink};
 use serde::Deserialize;
 use crate::models::Product;
 use num_format::{
@@ -124,17 +124,29 @@ impl ProductDetailPage {
     match self.data {
       Some(ref res) => {
         html! {
-          <Container>
-            <img src=format!("{}", res.product.sample_image_url) />
-            <p>
-              { format!("{:?}", res.product.material.title) }
-            </p>
-            <p>
-              { format!("{:?}", res.product.item.humanize_name) }
-            </p>
-            <p>
-              { format!("{}{}", res.product.price_with_tax.to_formatted_string(&Locale::en), "円") }
-            </p>
+          <Container size="l".to_string()>
+            <Row>
+              <Col col_m={7}>
+                <Image src=format!("{}", res.product.sample_image_url) />
+              </Col>
+              <Col col_m={5}>
+                <Card color="secondary-grouped-background".to_string()>
+                  <Container>
+                    <Heading level=1 size="m">
+                      { format!("{:?}", res.product.material.title) }
+                    </Heading>
+                    <p>
+                      <TextLink>
+                        { format!("{:?}", res.product.item.humanize_name) }
+                      </TextLink>
+                    </p>
+                    <p>
+                      { format!("{}{}", res.product.price_with_tax.to_formatted_string(&Locale::en), "円(税込)") }
+                    </p>
+                  </Container>
+                </Card>
+              </Col>
+            </Row>
           </Container>
         }
       }

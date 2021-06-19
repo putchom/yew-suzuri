@@ -5,7 +5,7 @@
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
-pub struct Container {
+pub struct Image {
   props: Props,
   link: ComponentLink<Self>,
 }
@@ -17,10 +17,10 @@ pub struct Props {
   #[prop_or_default]
   pub class: Classes,
   #[prop_or_default]
-  pub size: Option<String>,
+  pub src: String,
 }
 
-impl Component for Container {
+impl Component for Image {
   type Message = ();
   type Properties = Props;
 
@@ -48,23 +48,18 @@ impl Component for Container {
     let Props {
       children,
       class,
-      size,
+      src,
     } = &self.props;
 
     let classes:Vec<String> = vec![
-      "ncgr-container".to_string(),
-      match size {
-        Some(size) => format!("-{}", size),
-        None => "".to_string()
-      },
+      "ncgr-image".to_string(),
     ];
 
     html! {
-      <div
+      <img
         class=classes!(classes, class.clone())
-      >
-        { children.clone() }
-      </div>
+        src=format!("{}", src)
+      />
     }
   }
 }

@@ -12,15 +12,21 @@ yew = "0.18.0"
 
 [features]
 app-bar = []
+card = []
 col = []
 container = []
 heading = []
+image = []
 row = []
+text-link = []
 full = [
   "app-bar",
+  "card",
   "col",
   "container",
   "heading",
+  "image",
   "row",
+  "text-link",
 ]
 default = ["full"]

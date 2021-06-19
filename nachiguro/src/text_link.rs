@@ -5,7 +5,7 @@
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
-pub struct Container {
+pub struct TextLink {
   props: Props,
   link: ComponentLink<Self>,
 }
@@ -16,11 +16,9 @@ pub struct Props {
   pub children: Children,
   #[prop_or_default]
   pub class: Classes,
-  #[prop_or_default]
-  pub size: Option<String>,
 }
 
-impl Component for Container {
+impl Component for TextLink {
   type Message = ();
   type Properties = Props;
 
@@ -48,23 +46,19 @@ impl Component for Container {
     let Props {
       children,
       class,
-      size,
     } = &self.props;
 
     let classes:Vec<String> = vec![
-      "ncgr-container".to_string(),
-      match size {
-        Some(size) => format!("-{}", size),
-        None => "".to_string()
-      },
+      "ncgr-text-link".to_string(),
     ];
 
     html! {
-      <div
+      <a
         class=classes!(classes, class.clone())
+        href="#"
       >
         { children.clone() }
-      </div>
+      </a>
     }
   }
 }

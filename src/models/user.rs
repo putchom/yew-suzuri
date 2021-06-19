@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use std::env;
 use yew::{
   format::{
     Nothing
@@ -10,6 +9,8 @@ use yew::{
     }
   }
 };
+
+use crate::api;
 
 #[derive(Deserialize, Serialize, Clone, Default, PartialEq, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -22,23 +23,7 @@ pub struct User {
 
 impl User {
   pub fn get_user_info_by_id(id: i32) -> Request<Nothing> {
-    let key = "API_KEY";
-    let api_key = match env::var(key) {
-      Ok(val) => {
-        println!("{}", "Success!");
-        val
-      },
-      Err(e) => {
-        println!("{}", e);
-        "".to_string()
-      },
-    };
-    let authorization_value = format!("{} {}", "Bearer", api_key);
-    let uri = format!("https://suzuri.jp/api/v1/users/{}", id);
-    let request = Request::get(uri)
-    .header("Authorization", authorization_value)
-    .body(Nothing)
-    .expect("Could not build request.");
+    let request = api::get(format!("https://suzuri.jp/api/v1/users/{}", id));
   
     return request;
   }

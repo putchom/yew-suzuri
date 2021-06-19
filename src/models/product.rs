@@ -1,5 +1,4 @@
 use serde::{Deserialize, Serialize};
-use std::env;
 use yew::{
   format::{
     Nothing
@@ -12,6 +11,7 @@ use yew::{
 };
 use crate::models::item::Item;
 use crate::models::material::Material;
+use crate::api;
 
 #[derive(Deserialize, Serialize, Clone, Default, PartialEq, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -27,45 +27,13 @@ pub struct Product {
 
 impl Product {
   pub fn get_product_list_by_user_name(user_name: &str) -> Request<Nothing> {
-    let key = "API_KEY";
-    let api_key = match env::var(key) {
-      Ok(val) => {
-        println!("{}", "Success!");
-        val
-      },
-      Err(e) => {
-        println!("{}", e);
-        "".to_string()
-      },
-    };
-    let authorization_value = format!("{} {}", "Bearer", api_key);
-    let uri = format!("https://suzuri.jp/api/v1/products?userName={}", user_name);
-    let request = Request::get(uri)
-    .header("Authorization", authorization_value)
-    .body(Nothing)
-    .expect("Could not build request.");
-  
+    let request = api::get(format!("https://suzuri.jp/api/v1/products?userName={}", user_name));
+
     return request;
   }
   
   pub fn get_product_info_by_id(id: i32) -> Request<Nothing> {
-    let key = "API_KEY";
-    let api_key = match env::var(key) {
-      Ok(val) => {
-        println!("{}", "Success!");
-        val
-      },
-      Err(e) => {
-        println!("{}", e);
-        "".to_string()
-      },
-    };
-    let authorization_value = format!("{} {}", "Bearer", api_key);
-    let uri = format!("https://suzuri.jp/api/v1/products/{}", id);
-    let request = Request::get(uri)
-    .header("Authorization", authorization_value)
-    .body(Nothing)
-    .expect("Could not build request.");
+    let request = api::get(format!("https://suzuri.jp/api/v1/products/{}", id));
   
     return request;
   }

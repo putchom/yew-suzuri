@@ -1,7 +1,6 @@
-use nachiguro::{AppBar};
 use yew::prelude::*;
 use yew_router::prelude::*;
-
+use crate::components::Header;
 use crate::pages::{Home, ProductDetailPage};
 use crate::route::Route;
 
@@ -36,7 +35,7 @@ impl Component for App {
 
     html! {
       <>
-        <AppBar title="SUZURI" />
+        <Header />
         <Router<Route, ()> render=render />
       </>
     }

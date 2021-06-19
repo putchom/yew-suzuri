@@ -16,8 +16,6 @@ pub struct Props {
   pub children: Children,
   #[prop_or_default]
   pub class: Classes,
-  #[prop_or_default]
-  pub title: String,
 }
 
 impl Component for AppBar {
@@ -48,7 +46,6 @@ impl Component for AppBar {
     let Props {
       children,
       class,
-      title,
     } = &self.props;
 
     html! {
@@ -60,11 +57,8 @@ impl Component for AppBar {
         )
       >
         <div class="ncgr-app-bar__title">
-          { title.clone() }
-        </div>
-        <ul class="ncgr-app-bar__actions">
           { children.clone() }
-        </ul>
+        </div>
       </div>
     }
   }

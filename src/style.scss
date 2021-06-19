@@ -1,6 +1,25 @@
 $ncgr-assets-prefix: 'path/to/public/nachiguro/assets/';
 @import '../node_modules/nachiguro/src/nachiguro';
 
+// Header
+.Header-logo {
+  display: flex;
+  align-items: center;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.Header-logo-image {
+  width: 5rem;
+
+  @media (prefers-color-scheme: dark){
+    g,
+    path {
+      fill: var(--color-label);
+    }
+  }
+}
+
 // Home
 .Home-page {
   padding-top: 1.5rem;

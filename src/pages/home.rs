@@ -1,7 +1,7 @@
 use nachiguro::{Col, Container, Heading, Row};
 use serde::Deserialize;
 use crate::components::ProductCard;
-use crate::models::{Product, get_products};
+use crate::models::Product;
 use yew::{
   format::{
     Json,
@@ -54,7 +54,7 @@ impl Component for Home {
   fn update(&mut self, message: Self::Message) -> ShouldRender {
     match message {
       Msg::StartFetch => {
-        let request = get_products("surisurikun");
+        let request = Product::get_product_list_by_user_name("surisurikun");
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 

@@ -1,6 +1,6 @@
-use nachiguro::{Container, Heading};
+use nachiguro::{Container};
 use serde::Deserialize;
-use crate::models::{Product, get_product};
+use crate::models::Product;
 use num_format::{
   Locale,
   ToFormattedString
@@ -64,7 +64,7 @@ impl Component for ProductDetailPage {
   fn update(&mut self, message: Self::Message) -> ShouldRender {
     match message {
       Msg::StartFetch => {
-        let request = get_product(self.props.id);
+        let request = Product::get_product_info_by_id(self.props.id);
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 

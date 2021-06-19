@@ -7,6 +7,7 @@ use yew::prelude::*;
 
 pub struct Col {
   props: Props,
+  link: ComponentLink<Self>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -38,6 +39,7 @@ impl Component for Col {
   fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
     Self {
       props,
+      link,
     }
   }
 

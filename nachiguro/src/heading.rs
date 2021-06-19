@@ -7,6 +7,7 @@ use yew::prelude::*;
 
 pub struct Heading {
   props: Props,
+  link: ComponentLink<Self>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -28,6 +29,7 @@ impl Component for Heading {
   fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
     Self {
       props,
+      link,
     }
   }
 

@@ -3,10 +3,11 @@
 #![allow(unused_imports)]
 
 use wasm_bindgen::prelude::*;
-use yew::prelude::*;
+use yew::{prelude::*, virtual_dom::VNode};
 
 pub struct AppBar {
   props: Props,
+  link: ComponentLink<Self>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -16,7 +17,7 @@ pub struct Props {
   #[prop_or_default]
   pub class: Classes,
   #[prop_or_default]
-  pub title: String,
+  pub title: VNode,
 }
 
 impl Component for AppBar {
@@ -26,6 +27,7 @@ impl Component for AppBar {
   fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
     Self {
       props,
+      link,
     }
   }
 
@@ -58,7 +60,7 @@ impl Component for AppBar {
         )
       >
         <div class="ncgr-app-bar__title">
-          { title }
+          { title.clone() }
         </div>
         <ul class="ncgr-app-bar__actions">
           { children.clone() }

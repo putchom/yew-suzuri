@@ -7,6 +7,7 @@ use yew::prelude::*;
 
 pub struct Container {
   props: Props,
+  link: ComponentLink<Self>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -24,6 +25,7 @@ impl Component for Container {
   fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
     Self {
       props,
+      link,
     }
   }
 

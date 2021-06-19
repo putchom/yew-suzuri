@@ -28,6 +28,11 @@ pub mod image;
 #[cfg(feature = "image")]
 pub use image::Image;
 
+#[cfg(feature = "paragraph")]
+pub mod paragraph;
+#[cfg(feature = "paragraph")]
+pub use paragraph::Paragraph;
+
 #[cfg(feature = "row")]
 pub mod row;
 #[cfg(feature = "row")]

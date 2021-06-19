@@ -17,6 +17,7 @@ col = []
 container = []
 heading = []
 image = []
+paragraph = []
 row = []
 text-link = []
 full = [
@@ -26,6 +27,7 @@ full = [
   "container",
   "heading",
   "image",
+  "paragraph",
   "row",
   "text-link",
 ]

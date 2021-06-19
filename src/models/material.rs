@@ -4,4 +4,5 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "camelCase")]
 pub struct Material {
   pub title: String,
+  pub description: Option<String>,
 }

@@ -2,9 +2,10 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 use crate::components::Header;
 use crate::pages::{
-  Home,
+  ItemDetail,
   ProductDetail,
-  UserDetail
+  UserDetail,
+  Home,
 };
 use crate::route::Route;
 
@@ -29,6 +30,9 @@ impl Component for App {
   fn view(&self) -> Html {
 
     let render = Router::render(move |switch: Route| match switch {
+      Route::ItemDetail(id) => {
+        html! {<ItemDetail id=id />}
+      }
       Route::ProductDetail(id) => {
         html! {<ProductDetail id=id />}
       }

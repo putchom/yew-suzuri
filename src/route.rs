@@ -2,6 +2,8 @@ use yew_router::prelude::*;
 
 #[derive(Switch, Debug, Clone)]
 pub enum Route {
+  #[to = "/item/{id}"]
+  ItemDetail(i32),
   #[to = "/product/{id}"]
   ProductDetail(i32),
   #[to = "/user/{id}"]

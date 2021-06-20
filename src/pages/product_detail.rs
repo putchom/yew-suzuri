@@ -152,11 +152,14 @@ impl ProductDetail {
                   </Anchor>
                 </li>
                 <li class="ncgr-breadcrumbs__item">
-                  <a class="ncgr-breadcrumbs__link" href="#">
+                  <Anchor
+                    classes="ncgr-breadcrumbs__link"
+                    route=Route::ItemDetail(res.product.item.id)
+                  >
                     <span>
                       { format!("{}", res.product.item.humanize_name) }
                     </span>
-                  </a>
+                  </Anchor>
                 </li>
                 <li class="ncgr-breadcrumbs__item">
                   <Anchor

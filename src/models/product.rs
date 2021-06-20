@@ -26,6 +26,12 @@ pub struct Product {
 }
 
 impl Product {
+  pub fn get_product_list_by_item_id(item_id: i32) -> Request<Nothing> {
+    let request = api::get(format!("https://suzuri.jp/api/v1/products?itemId={}", item_id));
+
+    return request;
+  }
+
   pub fn get_product_list_by_user_name(user_name: &str) -> Request<Nothing> {
     let request = api::get(format!("https://suzuri.jp/api/v1/products?userName={}", user_name));
 

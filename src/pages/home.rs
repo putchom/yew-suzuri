@@ -127,8 +127,8 @@ impl Home {
                 <Col col={6} col_m={4} col_l={2}>
                   <ProductCard product={product} />
                 </Col>
-              })
-            }
+              }
+            )}
           </Row>
         }
       }
@@ -141,44 +141,17 @@ impl Home {
   }
 
   fn fetching(&self) -> Html {
+    let dummy_product_list: Vec<i32> = (0..12).collect();
+
     html! {
       <Row>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
-        <Col col={6} col_m={4} col_l={2}>
-          <SkeletonProductCard />
-        </Col>
+        { for dummy_product_list.iter().map( |_|
+          html! {
+            <Col col={6} col_m={4} col_l={2}>
+              <SkeletonProductCard />
+            </Col>
+          }
+        )}
       </Row>
     }
   }

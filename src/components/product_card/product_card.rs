@@ -1,7 +1,3 @@
-#![allow(unused_variables)]
-#![allow(dead_code)]
-#![allow(unused_imports)]
-
 use crate::models::Product;
 use crate::route::Route;
 
@@ -9,7 +5,6 @@ use num_format::{
   Locale,
   ToFormattedString
 };
-use wasm_bindgen::prelude::*;
 use yew::{
   prelude::*,
   html::{
@@ -41,10 +36,10 @@ impl Component for ProductCard {
   }
 
   fn update(&mut self, _: Self::Message) -> ShouldRender {
-    true
+    false
   }
 
-  fn change(&mut self, props: Self::Properties) -> ShouldRender {
+  fn change(&mut self, _: Self::Properties) -> ShouldRender {
     true
   }
 

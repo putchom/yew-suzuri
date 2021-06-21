@@ -1,20 +1,15 @@
 use nachiguro::{
-  Avatar,
-  Card,
   Col,
   Container,
-  Heading,
-  Image,
-  Paragraph,
   Row,
-  TextLink
 };
 use serde::Deserialize;
 use crate::models::Product;
-use crate::route::Route;
-use num_format::{
-  Locale,
-  ToFormattedString
+use crate::components::UserCard;
+use crate::pages::{
+  Breadcrumbs,
+  ProductImageView,
+  ProductInfoCard
 };
 use yew::{
   format::{
@@ -29,7 +24,6 @@ use yew::{
     }
   }
 };
-use yew_router::prelude::*;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -109,23 +103,25 @@ impl Component for ProductDetail {
   fn view(&self) -> Html {
     html! {
       <div class="ProductDetail-page">
-        // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-        {
-          match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-            (true, _, _) => {
-              self.fetching()
-            }
-            (false, Some(_), None) => {
-              self.success()
-            }
-            (false, None, None) => {
-              self.fail()
-            }
-            (_, _, _) => {
-              self.fail()
+          <Container size="l".to_string()>
+          // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+          {
+            match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+              (true, _, _) => {
+                self.fetching()
+              }
+              (false, Some(_), None) => {
+                self.success()
+              }
+              (false, None, None) => {
+                self.fail()
+              }
+              (_, _, _) => {
+                self.fail()
+              }
             }
           }
-        }
+        </Container>
       </div>
     }
   }
@@ -133,129 +129,21 @@ impl Component for ProductDetail {
 
 impl ProductDetail {
   fn success(&self) -> Html {
-    type Anchor = RouterAnchor<Route>;
-
     match self.data {
       Some(ref res) => {
         html! {
-          <Container size="l".to_string()>
-            <div class="ProductDetail-breadcrumbs">
-              <ol class="ncgr-breadcrumbs">
-                <li class="ncgr-breadcrumbs__item">
-                  <Anchor
-                    classes="ncgr-breadcrumbs__link"
-                    route=Route::HomePage
-                  >
-                    <span>
-                      { "SUZURI" }
-                    </span>
-                  </Anchor>
-                </li>
-                <li class="ncgr-breadcrumbs__item">
-                  <Anchor
-                    classes="ncgr-breadcrumbs__link"
-                    route=Route::ItemDetail(res.product.item.id)
-                  >
-                    <span>
-                      { format!("{}", res.product.item.humanize_name) }
-                    </span>
-                  </Anchor>
-                </li>
-                <li class="ncgr-breadcrumbs__item">
-                  <Anchor
-                    classes="ncgr-breadcrumbs__link"
-                    route=Route::UserDetail(res.product.material.user.id)
-                  >
-                    <span>
-                      { format!("{}", res.product.material.user.name) }
-                    </span>
-                  </Anchor>
-                </li>
-                <li class="ncgr-breadcrumbs__item">
-                  <Anchor
-                    classes="ncgr-breadcrumbs__link ncgr-breadcrumbs__link--active"
-                    route=Route::ProductDetail(res.product.id)
-                  >
-                    <span>
-                      { format!("{}", res.product.title) }
-                    </span>
-                  </Anchor>
-                </li>
-              </ol>
-            </div>
+          <>
+            <Breadcrumbs product=res.product.clone() />
             <Row>
               <Col col_m={7}>
-                <Image src=format!("{}", res.product.sample_image_url) />
+                <ProductImageView product=res.product.clone() />
               </Col>
               <Col col_m={5}>
-                <Card class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()>
-                  <Container>
-                    <Heading level=1 size="m">
-                      { format!("{}", res.product.material.title) }
-                    </Heading>
-                    <Paragraph>
-                      <TextLink>
-                        { format!("{}", res.product.item.humanize_name) }
-                      </TextLink>
-                    </Paragraph>
-                    <Paragraph>
-                      { format!("{}{}", res.product.price_with_tax.to_formatted_string(&Locale::en), "円(税込)") }
-                    </Paragraph>
-                    {
-                      match &res.product.material.description {
-                        Some(description) => html! {
-                          <div class=classes!("ProductDetail-description")>
-                            <Heading level=2 size="s">
-                              { "このアイテムについて" }
-                            </Heading>
-                            <Paragraph>
-                              { format!("{}", description) }
-                            </Paragraph>
-                          </div>
-                        },
-                        None => html! {
-                          <div></div>
-                        },
-                      }
-                    }
-                  </Container>
-                </Card>
+                <ProductInfoCard product=res.product.clone() />
               </Col>
             </Row>
-            <Card class=classes!("ProductDetail-user-card")>
-              <Container>
-                <ul>
-                  <li>
-                    <div>
-                      <Anchor
-                        route=Route::UserDetail(res.product.material.user.id)
-                      >
-                        <Avatar
-                          src={ format!("{}",
-                            match &res.product.material.user.avatar_url {
-                              Some(avatar_url) => avatar_url,
-                              None => "./icon_default.jpg"
-                            }
-                          )}
-                          size="l"
-                        />
-                        {
-                          match &res.product.material.user.display_name {
-                            Some(display_name) => html! {
-                              { format!("{}", display_name) }
-                            },
-                            None => html! {
-                              { format!("{}", res.product.material.user.name) }
-                            }
-                          }
-                        }
-                      </Anchor>
-                    </div>
-                  </li>
-                </ul>
-              </Container>
-            </Card>
-          </Container>
+            <UserCard user=res.product.material.user.clone() />
+          </>
         }
       }
       None => {

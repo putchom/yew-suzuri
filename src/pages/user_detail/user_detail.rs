@@ -4,7 +4,6 @@ use nachiguro::{
 };
 use serde::Deserialize;
 use crate::models::User;
-use crate::route::Route;
 use yew::{
   format::{
     Json,
@@ -18,7 +17,6 @@ use yew::{
     }
   }
 };
-use yew_router::prelude::*;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -122,8 +120,6 @@ impl Component for UserDetail {
 
 impl UserDetail {
   fn success(&self) -> Html {
-    type Anchor = RouterAnchor<Route>;
-
     match self.data {
       Some(ref res) => {
         html! {

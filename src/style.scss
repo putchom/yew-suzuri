@@ -40,6 +40,13 @@ $highlight-color: var(--color-secondary-grouped-background);
   }
 }
 
+// user-card
+.user-card {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 // Header
 .Header-logo {
   display: flex;
@@ -97,10 +104,4 @@ $highlight-color: var(--color-secondary-grouped-background);
 .ProductDetail-description {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.ProductDetail-user-card {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }

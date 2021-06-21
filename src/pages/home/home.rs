@@ -7,7 +7,7 @@ use yew::{
     Json,
   },
   prelude::*,
-    services::{
+  services::{
     fetch::{
       FetchService,
       FetchTask,

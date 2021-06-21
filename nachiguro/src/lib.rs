@@ -46,7 +46,7 @@ pub use row::Row;
 #[cfg(feature = "skeleton")]
 pub mod skeleton;
 #[cfg(feature = "skeleton")]
-pub use skeleton::*;
+pub use skeleton::Skeleton;
 
 #[cfg(feature = "text-link")]
 pub mod text_link;

@@ -3,11 +3,11 @@ use nachiguro::{
   Container,
   Heading,
   Row,
+  Skeleton,
 };
 use serde::Deserialize;
 use crate::models::Product;
-use crate::components::ProductCard;
-use crate::route::Route;
+use crate::components::{ProductCard, SkeletonProductCard};
 use yew::{
   format::{
     Json,
@@ -21,7 +21,6 @@ use yew::{
     }
   }
 };
-use yew_router::prelude::*;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -101,23 +100,25 @@ impl Component for ItemDetail {
   fn view(&self) -> Html {
     html! {
       <div class="ItemDetail-page">
-        // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-        {
-          match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-            (true, _, _) => {
-              self.fetching()
-            }
-            (false, Some(_), None) => {
-              self.success()
-            }
-            (false, None, None) => {
-              self.fail()
-            }
-            (_, _, _) => {
-              self.fail()
+        <Container>
+          // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+          {
+            match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+              (true, _, _) => {
+                self.fetching()
+              }
+              (false, Some(_), None) => {
+                self.success()
+              }
+              (false, None, None) => {
+                self.fail()
+              }
+              (_, _, _) => {
+                self.fail()
+              }
             }
           }
-        }
+        </Container>
       </div>
     }
   }
@@ -125,13 +126,15 @@ impl Component for ItemDetail {
 
 impl ItemDetail {
   fn success(&self) -> Html {
-    type Anchor = RouterAnchor<Route>;
-
     match self.data {
       Some(ref res) => {
         html! {
-          <Container>
-            <Heading class=classes!("ItemDetail-heading") level=1 size={"m"}>
+          <>
+            <Heading
+              class=classes!("ItemDetail-heading")
+              level=1
+              size={"m"}
+            >
               { format!("{}", res.products[0].item.humanize_name) }
             </Heading>
             <Row>
@@ -143,7 +146,7 @@ impl ItemDetail {
                 })
               }
             </Row>
-          </Container>
+          </>
         }
       }
       None => {
@@ -155,8 +158,30 @@ impl ItemDetail {
   }
 
   fn fetching(&self) -> Html {
+    let dummy_product_list: Vec<i32> = (0..12).collect();
+
     html! {
-      <div>{"Fetching..."}</div>
+      <>
+        <Heading
+          class=classes!("ItemDetail-heading")
+          level=1
+          size={"m"}
+        >
+          <Skeleton
+            class=classes!("skeleton-heading", "-m")
+            width="8rem".to_string()
+          />
+        </Heading>
+        <Row>
+          { for dummy_product_list.iter().map( |_|
+            html! {
+              <Col col={6} col_m={4} col_l={2}>
+                <SkeletonProductCard />
+              </Col>
+            }
+          )}
+        </Row>
+      </>
     }
   }
 

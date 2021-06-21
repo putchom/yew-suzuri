@@ -30,6 +30,16 @@ $highlight-color: var(--color-secondary-grouped-background);
   }
 }
 
+.skeleton-heading {
+  &.-m {
+    height: 1.25rem;
+
+    @include mq-boundary-up(s) {
+      height: 1.875rem;
+    }
+  }
+}
+
 // Header
 .Header-logo {
   display: flex;

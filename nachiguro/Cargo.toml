@@ -20,6 +20,7 @@ heading = []
 image = []
 paragraph = []
 row = []
+skeleton = []
 text-link = []
 full = [
   "app-bar",
@@ -31,6 +32,7 @@ full = [
   "image",
   "paragraph",
   "row",
+  "skeleton",
   "text-link",
 ]
 default = ["full"]

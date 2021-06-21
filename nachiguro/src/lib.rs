@@ -43,6 +43,11 @@ pub mod row;
 #[cfg(feature = "row")]
 pub use row::Row;
 
+#[cfg(feature = "skeleton")]
+pub mod skeleton;
+#[cfg(feature = "skeleton")]
+pub use skeleton::*;
+
 #[cfg(feature = "text-link")]
 pub mod text_link;
 #[cfg(feature = "text-link")]

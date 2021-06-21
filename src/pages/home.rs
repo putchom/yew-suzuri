@@ -1,6 +1,6 @@
 use nachiguro::{Col, Container, Heading, Row};
 use serde::Deserialize;
-use crate::components::ProductCard;
+use crate::components::{ProductCard, SkeletonProductCard};
 use crate::models::Product;
 use yew::{
   format::{
@@ -93,22 +93,24 @@ impl Component for Home {
           </Heading>
         </Container>
         // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-        {
-          match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-            (true, _, _) => {
-              self.fetching()
-            }
-            (false, Some(_), None) => {
-              self.success()
-            }
-            (false, None, None) => {
-              self.fail()
-            }
-            (_, _, _) => {
-              self.fail()
+        <Container>
+          {
+            match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+              (true, _, _) => {
+                self.fetching()
+              }
+              (false, Some(_), None) => {
+                self.success()
+              }
+              (false, None, None) => {
+                self.fail()
+              }
+              (_, _, _) => {
+                self.fail()
+              }
             }
           }
-        }
+        </Container>
       </div>
     }
   }
@@ -119,17 +121,15 @@ impl Home {
     match self.data {
       Some(ref res) => {
         html! {
-          <Container>
-            <Row>
-              { for res.products.iter().map( |product|
-                html! {
-                  <Col col={6} col_m={4} col_l={2}>
-                    <ProductCard product={product} />
-                  </Col>
-                })
-              }
-            </Row>
-          </Container>
+          <Row>
+            { for res.products.iter().map( |product|
+              html! {
+                <Col col={6} col_m={4} col_l={2}>
+                  <ProductCard product={product} />
+                </Col>
+              })
+            }
+          </Row>
         }
       }
       None => {
@@ -142,7 +142,44 @@ impl Home {
 
   fn fetching(&self) -> Html {
     html! {
-      <div>{"Fetching..."}</div>
+      <Row>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+        <Col col={6} col_m={4} col_l={2}>
+          <SkeletonProductCard />
+        </Col>
+      </Row>
     }
   }
 

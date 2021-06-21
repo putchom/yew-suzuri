@@ -1,6 +1,35 @@
 $ncgr-assets-prefix: 'path/to/public/nachiguro/assets/';
 @import '../node_modules/nachiguro/src/nachiguro';
 
+// Skeleton
+$base-color: var(--color-tertiary-grouped-background);
+$highlight-color: var(--color-secondary-grouped-background);
+
+.skeleton {
+  animation: linear-gradient 1.2s ease-in-out infinite;
+  background-color: $base-color;
+  background-image: linear-gradient(
+    90deg,
+    $base-color,
+    $highlight-color,
+    $base-color
+  );
+  background-size: 12rem 100%;
+  background-repeat: no-repeat;
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+}
+
+@keyframes linear-gradient {
+  0% {
+    background-position: -12rem 0;
+  }
+  100% {
+    background-position: calc(12rem + 100%) 0;
+  }
+}
+
 // Header
 .Header-logo {
   display: flex;

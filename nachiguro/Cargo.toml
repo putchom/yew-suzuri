@@ -9,6 +9,7 @@ description = "Yew wrapper for Nachiguro Web Components"
 [dependencies]
 wasm-bindgen = "0.2.74"
 yew = "0.18.0"
+yew-router = "0.15.0"
 
 [features]
 app-bar = []
@@ -18,6 +19,10 @@ col = []
 container = []
 heading = []
 image = []
+list-divider = []
+list-group = []
+list-tile = []
+list-view = []
 paragraph = []
 row = []
 skeleton = []
@@ -30,6 +35,10 @@ full = [
   "container",
   "heading",
   "image",
+  "list-divider",
+  "list-group",
+  "list-tile",
+  "list-view",
   "paragraph",
   "row",
   "skeleton",

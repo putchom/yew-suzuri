@@ -3,12 +3,13 @@ use nachiguro::{
   Card,
   Col,
   Container,
+  ListTile,
+  ListView,
   Row,
 };
 use serde::Deserialize;
 use crate::components::{ProductCard, SkeletonProductCard};
 use crate::models::{User, Product};
-use crate::route::Route;
 
 use yew::{
   format::{
@@ -23,7 +24,6 @@ use yew::{
     }
   }
 };
-use yew_router::prelude::*;
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {
@@ -105,40 +105,27 @@ impl Component for UserCard {
       user,
     } = &self.props;
 
-    type Anchor = RouterAnchor<Route>;
-
     html! {
       <Card class=classes!("user-card")>
-        <Container>
-          <ul>
-            <li>
-              <div>
-                <Anchor
-                  route=Route::UserDetail(user.id)
-                >
-                  <Avatar
-                    src={ format!("{}",
-                      match &user.avatar_url {
-                        Some(avatar_url) => avatar_url,
-                        None => "./icon_default.jpg"
-                      }
-                    )}
-                    size="l"
-                  />
-                  {
-                    match &user.display_name {
-                      Some(display_name) => html! {
-                        { format!("{}", display_name) }
-                      },
-                      None => html! {
-                        { format!("{}", user.name) }
-                      }
-                    }
-                  }
-                </Anchor>
-              </div>
-            </li>
-          </ul>
+        <ListView>
+          <ListTile primary_title={
+            match &user.display_name {
+              Some(display_name) => display_name.to_string(),
+              None => user.name.to_string()
+            }
+          }>
+            <Avatar
+              src={ format!("{}",
+                match &user.avatar_url {
+                  Some(avatar_url) => avatar_url,
+                  None => "./icon_default.jpg"
+                }
+              )}
+              size="m"
+            />
+          </ListTile>
+        </ListView>
+        <Container class=classes!("user-card__container")>
           {
             match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
               (true, _, _) => {

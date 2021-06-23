@@ -1,8 +1,6 @@
-mod product_grid_view;
-
 use nachiguro::{
-  Avatar,
-  Container,
+  Col,
+  Row,
 };
 use serde::Deserialize;
 use yew::{
@@ -14,17 +12,18 @@ use yew::{
     Response,
   }
 };
-use crate::models::user::User;
-use product_grid_view::ProductGridView;
-
-#[derive(Properties, Clone)]
-pub struct Props {
-  pub id: i32,
-}
+use crate::components::{
+  product_card::ProductCard,
+  skeleton_product_card::SkeletonProductCard,
+};
+use crate::models::{
+  user::User,
+  product::Product
+};
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {
-  user: User,
+  products: Vec<Product>,
 }
 
 pub enum Msg {
@@ -33,7 +32,12 @@ pub enum Msg {
   FailFetch,
 }
 
-pub struct UserDetail {
+#[derive(Clone, PartialEq, Properties)]
+pub struct Props {
+  #[prop_or_default]
+  pub user: User,
+}
+pub struct ProductGridView {
   props: Props,
   task: Option<FetchTask>,
   is_loading: bool,
@@ -42,7 +46,7 @@ pub struct UserDetail {
   error: Option<String>,
 }
 
-impl Component for UserDetail {
+impl Component for ProductGridView {
   type Message = Msg;
   type Properties = Props;
 
@@ -62,7 +66,7 @@ impl Component for UserDetail {
   fn update(&mut self, message: Self::Message) -> ShouldRender {
     match message {
       Msg::StartFetch => {
-        let request = User::get_user_info_by_id(self.props.id);
+        let request = Product::get_product_list_by_user_name(&self.props.user.name);
         let callback = self.link.callback(|response: Response<Json<Result<ResponseData, anyhow::Error>>>| {
             let Json(data) = response.into_body();
 
@@ -94,47 +98,40 @@ impl Component for UserDetail {
 
   fn view(&self) -> Html {
     html! {
-      <div class="UserDetail-page">
-        // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-        {
-          match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-            (true, _, _) => {
-              self.fetching()
-            }
-            (false, Some(_), None) => {
-              self.success()
-            }
-            (false, None, None) => {
-              self.fail()
-            }
-            (_, _, _) => {
-              self.fail()
-            }
+      {
+        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+          (true, _, _) => {
+            self.fetching()
+          }
+          (false, Some(_), None) => {
+            self.success()
+          }
+          (false, None, None) => {
+            self.fail()
+          }
+          (_, _, _) => {
+            self.fail()
           }
         }
-      </div>
+      }
     }
   }
 }
 
-impl UserDetail {
+impl ProductGridView {
   fn success(&self) -> Html {
     match self.data {
       Some(ref res) => {
         html! {
-          <Container>
-            <Avatar
-              src={
-                match res.user.avatar_url.clone() {
-                  Some(avatar_url) => avatar_url,
-                  None => "/images/icon_default.jpg".to_string()
-                }
+          <Row>
+            { for res.products.iter().map( |product|
+              html! {
+                <Col col={6} col_m={4} col_l={2}>
+                  <ProductCard product={product} />
+                </Col>
               }
-              size="l"
-            />
-            { res.user.name.to_string() }
-            <ProductGridView user=res.user.clone() />
-          </Container>
+            )}
+          </Row>
         }
       }
       None => {
@@ -146,8 +143,18 @@ impl UserDetail {
   }
 
   fn fetching(&self) -> Html {
+    let dummy_product_list: Vec<i32> = (0..12).collect();
+
     html! {
-      <div>{"Fetching..."}</div>
+      <Row>
+        { for dummy_product_list.iter().map( |_|
+          html! {
+            <Col col={6} col_m={4} col_l={2}>
+              <SkeletonProductCard />
+            </Col>
+          }
+        )}
+      </Row>
     }
   }
 

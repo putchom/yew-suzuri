@@ -1,13 +1,7 @@
-#![allow(unused_variables)]
-#![allow(dead_code)]
-#![allow(unused_imports)]
-
-use wasm_bindgen::prelude::*;
 use yew::prelude::*;
 
 pub struct Heading {
   props: Props,
-  link: ComponentLink<Self>,
 }
 
 #[derive(Clone, PartialEq, Properties)]
@@ -26,14 +20,13 @@ impl Component for Heading {
   type Message = ();
   type Properties = Props;
 
-  fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+  fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
     Self {
       props,
-      link,
     }
   }
 
-  fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+  fn update(&mut self, _: Self::Message) -> ShouldRender {
     false
   }
 
@@ -55,7 +48,7 @@ impl Component for Heading {
     } = &self.props;
 
     html! {
-      <@{format!("h{}", &self.props.level)}
+      <@{format!("h{}", level)}
         class=classes!(
           "ncgr-heading",
           format!("-{}", size),

@@ -4,25 +4,21 @@ use nachiguro::{
   Row,
 };
 use serde::Deserialize;
-use crate::models::Product;
+use yew::{
+  format::Json,
+  prelude::*,
+  services::fetch::{
+    FetchService,
+    FetchTask,
+    Response
+  }
+};
 use crate::components::UserCard;
+use crate::models::Product;
 use crate::pages::{
   Breadcrumbs,
   ProductImageView,
   ProductInfoCard
-};
-use yew::{
-  format::{
-    Json,
-  },
-  prelude::*,
-    services::{
-    fetch::{
-      FetchService,
-      FetchTask,
-      Response
-    }
-  }
 };
 
 #[derive(Properties, Clone)]

@@ -5,13 +5,12 @@ use nachiguro::{
   Paragraph,
   TextLink
 };
-use crate::models::Product;
 use num_format::{
   Locale,
   ToFormattedString
 };
-
 use yew::prelude::*;
+use crate::models::Product;
 
 pub struct ProductInfoCard {
   props: Props,
@@ -50,11 +49,11 @@ impl Component for ProductInfoCard {
       <Card class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()>
         <Container>
           <Heading level=1 size="m">
-            { format!("{}", product.material.title) }
+            { product.material.title.to_string() }
           </Heading>
           <Paragraph>
             <TextLink>
-              { format!("{}", product.item.humanize_name) }
+              { product.item.humanize_name.to_string() }
             </TextLink>
           </Paragraph>
           <Paragraph>
@@ -68,7 +67,7 @@ impl Component for ProductInfoCard {
                     { "このアイテムについて" }
                   </Heading>
                   <Paragraph>
-                    { format!("{}", description) }
+                    { description.to_string() }
                   </Paragraph>
                 </div>
               },

@@ -1,16 +1,15 @@
-use serde::{Deserialize, Serialize};
-use yew::{
-  format::{
-    Nothing
-  },
-  services::{
-    fetch::{
-      Request,
-    }
-  }
+use serde::{
+  Deserialize,
+  Serialize
 };
-use crate::models::item::Item;
-use crate::models::material::Material;
+use yew::{
+  format::Nothing,
+  services::fetch::Request,
+};
+use crate::models::{
+  item::Item,
+  material::Material
+};
 use crate::api;
 
 #[derive(Deserialize, Serialize, Clone, Default, PartialEq, Debug)]
@@ -27,20 +26,14 @@ pub struct Product {
 
 impl Product {
   pub fn get_product_list_by_item_id(item_id: i32) -> Request<Nothing> {
-    let request = api::get(format!("https://suzuri.jp/api/v1/products?itemId={}", item_id));
-
-    return request;
+    api::get(format!("https://suzuri.jp/api/v1/products?itemId={}", item_id))
   }
 
   pub fn get_product_list_by_user_name(user_name: &str) -> Request<Nothing> {
-    let request = api::get(format!("https://suzuri.jp/api/v1/products?userName={}", user_name));
-
-    return request;
+    api::get(format!("https://suzuri.jp/api/v1/products?userName={}", user_name))
   }
   
   pub fn get_product_info_by_id(id: i32) -> Request<Nothing> {
-    let request = api::get(format!("https://suzuri.jp/api/v1/products/{}", id));
-  
-    return request;
+    api::get(format!("https://suzuri.jp/api/v1/products/{}", id))
   }
 }

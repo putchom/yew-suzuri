@@ -1,7 +1,7 @@
 use nachiguro::Image;
+use yew::prelude::*;
 use crate::models::Product;
 
-use yew::prelude::*;
 pub struct ProductImageView {
   props: Props,
 }
@@ -36,7 +36,7 @@ impl Component for ProductImageView {
     } = &self.props;
 
     html! {
-      <Image src=format!("{}", product.sample_image_url) />
+      <Image src=product.sample_image_url.to_string() />
     }
   }
 }

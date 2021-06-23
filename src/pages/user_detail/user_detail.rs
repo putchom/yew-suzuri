@@ -3,20 +3,16 @@ use nachiguro::{
   Container,
 };
 use serde::Deserialize;
-use crate::models::User;
 use yew::{
-  format::{
-    Json,
-  },
+  format::Json,
   prelude::*,
-    services::{
-    fetch::{
-      FetchService,
-      FetchTask,
-      Response
-    }
+  services::fetch::{
+    FetchService,
+    FetchTask,
+    Response,
   }
 };
+use crate::models::User;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -125,15 +121,15 @@ impl UserDetail {
         html! {
           <Container>
             <Avatar
-              src={ format!("{}",
-                match &res.user.avatar_url {
+              src={
+                match res.user.avatar_url.clone() {
                   Some(avatar_url) => avatar_url,
-                  None => "/images/icon_default.jpg"
+                  None => "/images/icon_default.jpg".to_string()
                 }
-              )}
+              }
               size="l"
             />
-            { format!("{}", res.user.name) }
+            { res.user.name.to_string() }
           </Container>
         }
       }

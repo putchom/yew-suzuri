@@ -1,12 +1,9 @@
-use nachiguro::{AppBar};
-
-use crate::route::Route;
-
+use nachiguro::AppBar;
 use yew::prelude::*;
 use yew_router::prelude::*;
+use crate::route::Route;
 
 pub struct Header {}
-
 
 impl Component for Header {
   type Message = ();

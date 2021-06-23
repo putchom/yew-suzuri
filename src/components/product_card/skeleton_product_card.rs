@@ -1,5 +1,4 @@
-use nachiguro::{Skeleton};
-
+use nachiguro::Skeleton;
 use yew::prelude::*;
 
 pub struct SkeletonProductCard {

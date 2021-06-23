@@ -1,4 +1,7 @@
-use serde::{Deserialize, Serialize};
+use serde::{
+  Deserialize,
+  Serialize
+};
 
 #[derive(Deserialize, Serialize, Clone, Default, PartialEq, Debug)]
 #[serde(rename_all = "camelCase")]

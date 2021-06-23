@@ -6,20 +6,19 @@ use nachiguro::{
   Skeleton,
 };
 use serde::Deserialize;
-use crate::models::Product;
-use crate::components::{ProductCard, SkeletonProductCard};
 use yew::{
-  format::{
-    Json,
-  },
+  format::Json,
   prelude::*,
-    services::{
-    fetch::{
-      FetchService,
-      FetchTask,
-      Response
-    }
-  }
+  services::fetch::{
+    FetchService,
+    FetchTask,
+    Response
+  },
+};
+use crate::models::Product;
+use crate::components::{
+  ProductCard,
+  SkeletonProductCard
 };
 
 #[derive(Properties, Clone)]
@@ -135,7 +134,7 @@ impl ItemDetail {
               level=1
               size={"m"}
             >
-              { format!("{}", res.products[0].item.humanize_name) }
+              { res.products[0].item.humanize_name.to_string() }
             </Heading>
             <Row>
               { for res.products.iter().map( |product|

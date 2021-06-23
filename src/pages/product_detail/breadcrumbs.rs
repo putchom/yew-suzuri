@@ -1,8 +1,7 @@
-use crate::models::Product;
-use crate::route::Route;
-
 use yew::prelude::*;
 use yew_router::prelude::*;
+use crate::models::Product;
+use crate::route::Route;
 
 pub struct Breadcrumbs {
   props: Props,
@@ -58,7 +57,7 @@ impl Component for Breadcrumbs {
               route=Route::ItemDetail(product.item.id)
             >
               <span>
-                { format!("{}", product.item.humanize_name) }
+                { product.item.humanize_name.to_string() }
               </span>
             </Anchor>
           </li>
@@ -68,7 +67,7 @@ impl Component for Breadcrumbs {
               route=Route::UserDetail(product.material.user.id)
             >
               <span>
-                { format!("{}", product.material.user.name) }
+                { product.material.user.name.to_string() }
               </span>
             </Anchor>
           </li>
@@ -78,7 +77,7 @@ impl Component for Breadcrumbs {
               route=Route::ProductDetail(product.id)
             >
               <span>
-                { format!("{}", product.title) }
+                { product.title.to_string() }
               </span>
             </Anchor>
           </li>

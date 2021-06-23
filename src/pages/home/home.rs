@@ -1,20 +1,24 @@
-use nachiguro::{Col, Container, Heading, Row};
+use nachiguro::{
+  Col,
+  Container,
+  Heading,
+  Row
+};
 use serde::Deserialize;
-use crate::components::{ProductCard, SkeletonProductCard};
-use crate::models::Product;
 use yew::{
-  format::{
-    Json,
-  },
+  format::Json,
   prelude::*,
-  services::{
-    fetch::{
-      FetchService,
-      FetchTask,
-      Response
-    }
+  services::fetch::{
+    FetchService,
+    FetchTask,
+    Response
   }
 };
+use crate::components::{
+  ProductCard,
+  SkeletonProductCard
+};
+use crate::models::Product;
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {

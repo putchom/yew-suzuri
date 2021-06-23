@@ -8,21 +8,22 @@ use nachiguro::{
   Row,
 };
 use serde::Deserialize;
-use crate::components::{ProductCard, SkeletonProductCard};
-use crate::models::{User, Product};
-
 use yew::{
-  format::{
-    Json,
-  },
+  format::Json,
   prelude::*,
-  services::{
-    fetch::{
-      FetchService,
-      FetchTask,
-      Response
-    }
+  services::fetch::{
+    FetchService,
+    FetchTask,
+    Response,
   }
+};
+use crate::components::{
+  ProductCard,
+  SkeletonProductCard
+};
+use crate::models::{
+  User,
+  Product
 };
 
 #[derive(Deserialize, Clone)]
@@ -101,26 +102,22 @@ impl Component for UserCard {
   }
 
   fn view(&self) -> Html {
-    let Props {
-      user,
-    } = &self.props;
-
     html! {
       <Card class=classes!("user-card")>
         <ListView>
           <ListTile primary_title={
-            match &user.display_name {
+            match self.props.user.display_name.clone() {
               Some(display_name) => display_name.to_string(),
-              None => user.name.to_string()
+              None => self.props.user.name.to_string(),
             }
           }>
             <Avatar
-              src={ format!("{}",
-                match &user.avatar_url {
+              src={
+                match self.props.user.avatar_url.clone() {
                   Some(avatar_url) => avatar_url,
-                  None => "./icon_default.jpg"
+                  None => "./icon_default.jpg".to_string(),
                 }
-              )}
+              }
               size="m"
             />
           </ListTile>

@@ -1,17 +1,14 @@
-use crate::models::Product;
-use crate::route::Route;
-
 use num_format::{
   Locale,
   ToFormattedString
 };
 use yew::{
   prelude::*,
-  html::{
-    ImplicitClone
-  }
+  html::ImplicitClone,
 };
 use yew_router::prelude::*;
+use crate::models::Product;
+use crate::route::Route;
 
 pub struct ProductCard {
   props: Props,
@@ -62,17 +59,17 @@ impl Component for ProductCard {
           classes="ncgr-product-card__thumbnail"
           route=Route::ProductDetail(product.id)
         >
-          <img class="ncgr-product-card__image" src=format!("{}", product.sample_image_url) />
+          <img class="ncgr-product-card__image" src=product.sample_image_url.to_string() />
         </Anchor>
         <div class="ncgr-product-card__info">
           <Anchor
             classes="ncgr-product-card__name"
             route=Route::ProductDetail(product.id)
           >
-            { format!("{}", product.material.title) }
+            { product.material.title.to_string() }
           </Anchor>
           <div class="ncgr-product-card__item-name">
-            { format!("{}", product.item.humanize_name) }
+            { product.item.humanize_name.to_string() }
           </div>
           <div class="ncgr-product-card__price">
             { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }

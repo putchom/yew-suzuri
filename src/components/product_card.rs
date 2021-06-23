@@ -7,7 +7,7 @@ use yew::{
   html::ImplicitClone,
 };
 use yew_router::prelude::*;
-use crate::models::Product;
+use crate::models::product::Product;
 use crate::route::Route;
 
 pub struct ProductCard {

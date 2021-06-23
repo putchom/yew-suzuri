@@ -22,8 +22,8 @@ use crate::components::{
   skeleton_product_card::SkeletonProductCard,
 };
 use crate::models::{
-  User,
-  Product
+  user::User,
+  product::Product
 };
 
 #[derive(Deserialize, Clone)]

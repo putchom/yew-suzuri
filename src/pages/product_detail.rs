@@ -23,7 +23,7 @@ use yew::{
     Response
   }
 };
-use crate::models::Product;
+use crate::models::product::Product;
 use breadcrumbs::Breadcrumbs;
 use product_image_view::ProductImageView;
 use product_info_card::ProductInfoCard;

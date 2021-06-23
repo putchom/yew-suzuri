@@ -1,6 +1,6 @@
 use nachiguro::Image;
 use yew::prelude::*;
-use crate::models::Product;
+use crate::models::product::Product;
 
 pub struct ProductImageView {
   props: Props,

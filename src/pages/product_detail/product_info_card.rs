@@ -10,7 +10,7 @@ use num_format::{
   ToFormattedString
 };
 use yew::prelude::*;
-use crate::models::Product;
+use crate::models::product::Product;
 
 pub struct ProductInfoCard {
   props: Props,

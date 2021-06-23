@@ -18,7 +18,7 @@ use crate::components::{
   product_card::ProductCard,
   skeleton_product_card::SkeletonProductCard,
 };
-use crate::models::Product;
+use crate::models::product::Product;
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {

@@ -12,7 +12,7 @@ use yew::{
     Response,
   }
 };
-use crate::models::User;
+use crate::models::user::User;
 
 #[derive(Properties, Clone)]
 pub struct Props {

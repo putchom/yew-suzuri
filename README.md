@@ -29,3 +29,23 @@ cargo make build
 ```sh
 cargo make serve
 ```
+
+## Deployment
+
+### 1. Install
+
+```sh
+npm install -g firebase-tools
+```
+
+### 2. Login
+
+```sh
+firebase login
+```
+
+### 3. Deploy
+
+```sh
+firebase deploy
+```

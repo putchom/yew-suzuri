@@ -165,3 +165,6 @@ dist
 
 # Constans
 src/constants.rs
+
+# Firebase
+.firebase

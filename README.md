@@ -15,8 +15,8 @@ cargo install simple-http-server # Simple server to serve assets
 
 ### 2. Set Environment vairables
 
-Copy `.env.example` to create `.env`.
-Enter the api key of the application you created at https://suzuri.jp/developer/apps into the `API_KEY` field in `.env`.
+Copy `src/constants.rs.example` to create `src/constants.rs`.
+Enter the api key of the application you created at https://suzuri.jp/developer/apps into the `API_KEY` field in `src/constants.rs`.
 
 ### 3. Build
 

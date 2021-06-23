@@ -163,3 +163,5 @@ dist
 .pnp.*
 
 
+# Constans
+src/constants.rs

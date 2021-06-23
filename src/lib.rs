@@ -3,6 +3,7 @@
 mod api;
 mod app;
 mod components;
+mod constants;
 mod pages;
 mod route;
 mod models;

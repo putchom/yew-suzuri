@@ -55,7 +55,6 @@ impl Component for Skeleton {
     ];
 
     let styles:Vec<String> = vec![
-      "vertical-align: top;".to_string(),
       match aspect_ratio {
         Some(aspect_ratio) => format!("aspect-ratio: {};", aspect_ratio),
         None => "".to_string()

@@ -1,6 +1,12 @@
+#![allow(clippy::large_enum_variant)]
+
 mod breadcrumbs;
 mod product_image_view;
 mod product_info_card;
+mod skeleton_breadcrumbs;
+mod skeleton_product_image_view;
+mod skeleton_product_info_card;
+mod user_card;
 
 use nachiguro::{
   Col,
@@ -17,11 +23,14 @@ use yew::{
     Response
   }
 };
-use crate::components::UserCard;
 use crate::models::Product;
 use breadcrumbs::Breadcrumbs;
 use product_image_view::ProductImageView;
 use product_info_card::ProductInfoCard;
+use skeleton_breadcrumbs::SkeletonBreadcrumbs;
+use skeleton_product_image_view::SkeletonProductImageView;
+use skeleton_product_info_card::SkeletonProductInfoCard;
+use user_card::UserCard;
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -154,7 +163,17 @@ impl ProductDetail {
 
   fn fetching(&self) -> Html {
     html! {
-      <div>{"Fetching..."}</div>
+      <>
+        <SkeletonBreadcrumbs />
+        <Row>
+          <Col col_m={7}>
+            <SkeletonProductImageView />
+          </Col>
+          <Col col_m={5}>
+            <SkeletonProductInfoCard />
+          </Col>
+        </Row>
+      </>
     }
   }
 

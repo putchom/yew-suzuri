@@ -1,6 +1,6 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
-use crate::components::Header;
+use crate::components::header::Header;
 use crate::pages::{
   item_detail::ItemDetail,
   product_detail::ProductDetail,

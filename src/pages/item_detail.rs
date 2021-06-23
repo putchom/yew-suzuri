@@ -17,8 +17,8 @@ use yew::{
 };
 use crate::models::Product;
 use crate::components::{
-  ProductCard,
-  SkeletonProductCard
+  product_card::ProductCard,
+  skeleton_product_card::SkeletonProductCard,
 };
 
 #[derive(Properties, Clone)]

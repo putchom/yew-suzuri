@@ -18,8 +18,8 @@ use yew::{
   }
 };
 use crate::components::{
-  ProductCard,
-  SkeletonProductCard
+  product_card::ProductCard,
+  skeleton_product_card::SkeletonProductCard,
 };
 use crate::models::{
   User,

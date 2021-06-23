@@ -2,10 +2,10 @@ use yew::prelude::*;
 use yew_router::prelude::*;
 use crate::components::Header;
 use crate::pages::{
-  ItemDetail,
-  ProductDetail,
-  UserDetail,
-  Home,
+  item_detail::ItemDetail,
+  product_detail::ProductDetail,
+  user_detail::UserDetail,
+  home::Home,
 };
 use crate::route::Route;
 

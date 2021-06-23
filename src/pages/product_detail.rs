@@ -1,3 +1,7 @@
+mod breadcrumbs;
+mod product_image_view;
+mod product_info_card;
+
 use nachiguro::{
   Col,
   Container,
@@ -15,11 +19,9 @@ use yew::{
 };
 use crate::components::UserCard;
 use crate::models::Product;
-use crate::pages::{
-  Breadcrumbs,
-  ProductImageView,
-  ProductInfoCard
-};
+use breadcrumbs::Breadcrumbs;
+use product_image_view::ProductImageView;
+use product_info_card::ProductInfoCard;
 
 #[derive(Properties, Clone)]
 pub struct Props {

@@ -52,6 +52,10 @@ $highlight-color: var(--color-secondary-grouped-background);
 }
 
 // Header
+.Header {
+  border-bottom: 1px solid var(--color-separator);
+}
+
 .Header-logo {
   display: flex;
   align-items: center;

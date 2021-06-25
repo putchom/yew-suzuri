@@ -103,11 +103,14 @@ $highlight-color: var(--color-secondary-grouped-background);
 .ProductDetail-product-card {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  margin-left: 1.5rem;
+}
+
+.ProductDetail-product-info-card {
+  padding-left: 1.5rem;
 
   @include mediaquery(tablet) {
-    margin-top: 1.5rem;
-    margin-left: 0;
+    padding-top: 1.5rem;
+    padding-left: 0;
   }
 }
 

@@ -146,7 +146,9 @@ impl ProductDetail {
                 <ProductImageView product=res.product.clone() />
               </Col>
               <Col col_m={5}>
-                <ProductInfoCard product=res.product.clone() />
+                <div class="ProductDetail-product-info-card">
+                  <ProductInfoCard product=res.product.clone() />
+                </div>
               </Col>
             </Row>
             <UserCard user=res.product.material.user.clone() />
@@ -170,7 +172,9 @@ impl ProductDetail {
             <SkeletonProductImageView />
           </Col>
           <Col col_m={5}>
-            <SkeletonProductInfoCard />
+            <div class="ProductDetail-product-info-card">
+              <SkeletonProductInfoCard />
+            </div>
           </Col>
         </Row>
       </>

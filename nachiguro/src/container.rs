@@ -11,6 +11,8 @@ pub struct Props {
   #[prop_or_default]
   pub class: Classes,
   #[prop_or_default]
+  pub is_gapless: Option<bool>,
+  #[prop_or_default]
   pub size: Option<String>,
 }
 
@@ -41,11 +43,16 @@ impl Component for Container {
     let Props {
       children,
       class,
+      is_gapless,
       size,
     } = &self.props;
 
     let classes:Vec<String> = vec![
       "ncgr-container".to_string(),
+      match is_gapless {
+        Some(_) => "-no-gaps".to_string(),
+        None => "".to_string()
+      },
       match size {
         Some(size) => format!("-{}", size),
         None => "".to_string()

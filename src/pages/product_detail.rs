@@ -110,7 +110,7 @@ impl Component for ProductDetail {
   fn view(&self) -> Html {
     html! {
       <div class="ProductDetail-page">
-          <Container size="l".to_string()>
+          <Container is_gapless=true size="l".to_string()>
           // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
           {
             match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
@@ -141,7 +141,7 @@ impl ProductDetail {
         html! {
           <>
             <Breadcrumbs product=res.product.clone() />
-            <Row>
+            <Row is_gapless=true>
               <Col col_m={7}>
                 <ProductImageView product=res.product.clone() />
               </Col>
@@ -165,7 +165,7 @@ impl ProductDetail {
     html! {
       <>
         <SkeletonBreadcrumbs />
-        <Row>
+        <Row is_gapless=true>
           <Col col_m={7}>
             <SkeletonProductImageView />
           </Col>

@@ -103,11 +103,22 @@ $highlight-color: var(--color-secondary-grouped-background);
 .ProductDetail-product-card {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  margin-left: 1.5rem;
+
+  @include mediaquery(tablet) {
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
 }
 
 .ProductDetail-breadcrumbs {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  
+  @include mediaquery(tablet) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }
 
 .ProductDetail-description {

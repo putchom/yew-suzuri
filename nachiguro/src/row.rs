@@ -10,6 +10,8 @@ pub struct Props {
   pub children: Children,
   #[prop_or_default]
   pub class: Classes,
+  #[prop_or_default]
+  pub is_gapless: Option<bool>,
 }
 
 impl Component for Row {
@@ -39,14 +41,20 @@ impl Component for Row {
     let Props {
       children,
       class,
+      is_gapless,
     } = &self.props;
+
+    let classes:Vec<String> = vec![
+      "ncgr-row".to_string(),
+      match is_gapless {
+        Some(_) => "-no-gaps".to_string(),
+        None => "".to_string()
+      },
+    ];
 
     html! {
       <div
-        class=classes!(
-          "ncgr-row",
-          class.clone(),
-        )
+        class=classes!(classes, class.clone())
       >
         { children.clone() }
       </div>

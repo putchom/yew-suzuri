@@ -4,7 +4,7 @@ mod skeleton_item_list_view;
 use crate::models::item::Item;
 use crate::route::Route;
 use item_list_view::ItemListView;
-use nachiguro::{Container, ListGroup, Textfield};
+use nachiguro::{Col, Container, ListGroup, Row};
 use serde::Deserialize;
 use skeleton_item_list_view::SkeletonItemListView;
 use yew::{
@@ -99,19 +99,33 @@ impl Component for Search {
             <div class=classes!("Search-page")>
                 <Container is_gapless=true size="m".to_string()>
                     <Container class=classes!("Search-textfield-container")>
-                        // <Textfield
-                        //     input_type="text"
-                        //     label_text="キーワードからさがす".to_string()
-                        //     name="search"
-                        //     placeholder="例）犬, 忍者スリスリくん".to_string()
-                        // />
-                        <input
-                            type="text" value={self.input_value.clone()}
-                            oninput=self.link.callback(|event: InputData| Msg::OnInput(event.value))
-                        />
-                        <Anchor route=Route::SearchResult(self.input_value.clone())>
-                            { "さがす" }
-                        </Anchor>
+                        <Row>
+                            <Col col={9}>
+                                // TODO: Textfieldにoninputわたせるようにする
+                                <div class="ncgr-textfield">
+                                    <label class="ncgr-textfield__label" for="query">
+                                        { "キーワードからさがす" }
+                                    </label>
+                                    <input
+                                        class="ncgr-textfield__input"
+                                        id="query"
+                                        name="query"
+                                        type="text" value={self.input_value.clone()}
+                                        oninput=self.link.callback(|event: InputData| Msg::OnInput(event.value))
+                                        placeholder="例）犬, 忍者スリスリくん"
+                                    />
+                                </div>
+                            </Col>
+                            <Col col={3}>
+                                // TODO: ButtonでAnchorがつかえるようにする
+                                <Anchor
+                                    classes="ncgr-button ncgr-button--primary"
+                                    route=Route::SearchResult(self.input_value.clone())
+                                >
+                                    { "さがす" }
+                                </Anchor>
+                            </Col>
+                        </Row>
                     </Container>
                     <ListGroup sub_header="カテゴリーからさがす".to_string()>
                         {

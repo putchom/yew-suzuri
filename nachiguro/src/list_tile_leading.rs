@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-pub struct ListTile {
+pub struct ListTileLeading {
     props: Props,
 }
 
@@ -12,7 +12,7 @@ pub struct Props {
     pub class: Classes,
 }
 
-impl Component for ListTile {
+impl Component for ListTileLeading {
     type Message = ();
     type Properties = Props;
 
@@ -36,12 +36,12 @@ impl Component for ListTile {
     fn view(&self) -> Html {
         let Props { children, class } = &self.props;
 
-        let classes: Vec<String> = vec!["ncgr-list-tile".to_string()];
+        let classes: Vec<String> = vec!["ncgr-list-tile__leading".to_string()];
 
         html! {
-            <li class=classes!(classes, class.clone())>
+            <div class=classes!(classes, class.clone())>
                 { children.clone() }
-            </li>
+            </div>
         }
     }
 }

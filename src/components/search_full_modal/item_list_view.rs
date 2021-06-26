@@ -1,6 +1,8 @@
 use crate::models::item::Item;
-use nachiguro::{ListGroup, ListTile, ListView};
+use crate::route::Route;
+use nachiguro::{ListTileLeading, ListTileTitle, ListView};
 use yew::prelude::*;
+use yew_router::prelude::*;
 
 pub struct ItemListView {
     props: Props,
@@ -36,27 +38,36 @@ impl Component for ItemListView {
     fn view(&self) -> Html {
         let Props { items } = &self.props;
 
+        type Anchor = RouterAnchor<Route>;
+
         html! {
-            <ListGroup sub_header="アイテムからさがす".to_string()>
-                <ListView>
-                    { for items.iter().map( |item|
-                        html! {
-                            <ListTile primary_title=item.humanize_name.clone()>
-                                <img
-                                    src={
-                                        match item.icon_urls.get("png") {
-                                            Some(url) => url.to_string(),
-                                            None => "".to_string()
+            <ListView>
+                { for items.iter().map( |item|
+                    html! {
+                        // TODO: routeをPropsとしてNachiguroに渡したい
+                        <li>
+                            <Anchor
+                                classes="ncgr-list-tile"
+                                route=Route::ItemDetail(item.id)
+                            >
+                                <ListTileLeading>
+                                    <img
+                                        src={
+                                            match item.icon_urls.get("png") {
+                                                Some(url) => url.to_string(),
+                                                None => "".to_string()
+                                            }
                                         }
-                                    }
-                                    width="40px"
-                                    height="40px"
-                                />
-                            </ListTile>
-                        }
-                    )}
-                </ListView>
-            </ListGroup>
+                                        width="40px"
+                                        height="40px"
+                                    />
+                                </ListTileLeading>
+                                <ListTileTitle primary_title=item.humanize_name.clone() />
+                            </Anchor>
+                        </li>
+                    }
+                )}
+            </ListView>
         }
     }
 }

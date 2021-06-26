@@ -58,6 +58,21 @@ pub mod list_tile;
 #[cfg(feature = "list-tile")]
 pub use list_tile::ListTile;
 
+#[cfg(feature = "list-tile")]
+pub mod list_tile_leading;
+#[cfg(feature = "list-tile")]
+pub use list_tile_leading::ListTileLeading;
+
+#[cfg(feature = "list-tile")]
+pub mod list_tile_title;
+#[cfg(feature = "list-tile")]
+pub use list_tile_title::ListTileTitle;
+
+#[cfg(feature = "list-tile")]
+pub mod list_tile_trailing;
+#[cfg(feature = "list-tile")]
+pub use list_tile_trailing::ListTileTrailing;
+
 #[cfg(feature = "list-view")]
 pub mod list_view;
 #[cfg(feature = "list-view")]

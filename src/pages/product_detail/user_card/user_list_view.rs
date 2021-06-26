@@ -1,6 +1,8 @@
 use crate::models::user::User;
-use nachiguro::{Avatar, ListTile, ListView};
+use crate::route::Route;
+use nachiguro::{Avatar, ListTileLeading, ListTileTitle, ListView};
 use yew::prelude::*;
+use yew_router::prelude::*;
 
 pub struct UserListView {
     props: Props,
@@ -36,24 +38,37 @@ impl Component for UserListView {
     fn view(&self) -> Html {
         let Props { user } = &self.props;
 
+        type Anchor = RouterAnchor<Route>;
+
         html! {
             <ListView>
-                <ListTile primary_title={
-                    match user.display_name.clone() {
-                        Some(display_name) => display_name,
-                        None => user.name.to_string(),
-                    }
-                }>
-                    <Avatar
-                        src={
-                            match user.avatar_url.clone() {
-                                Some(avatar_url) => avatar_url,
-                                None => "./icon_default.jpg".to_string(),
+                // TODO: routeをPropsとしてNachiguroに渡したい
+                <li>
+                    <Anchor
+                        classes="ncgr-list-tile"
+                        route=Route::UserDetail(user.id)
+                    >
+                        <ListTileLeading>
+                            <Avatar
+                                src={
+                                    match user.avatar_url.clone() {
+                                        Some(avatar_url) => avatar_url,
+                                        None => "./icon_default.jpg".to_string(),
+                                    }
+                                }
+                                size="m"
+                            />
+                        </ListTileLeading>
+                        <ListTileTitle
+                            primary_title={
+                                match user.display_name.clone() {
+                                    Some(display_name) => display_name,
+                                    None => user.name.to_string(),
+                                }
                             }
-                        }
-                        size="m"
-                    />
-                </ListTile>
+                        />
+                    </Anchor>
+                </li>
             </ListView>
         }
     }

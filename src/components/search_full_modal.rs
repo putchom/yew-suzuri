@@ -2,7 +2,7 @@ mod item_list_view;
 
 use crate::models::item::Item;
 use item_list_view::ItemListView;
-use nachiguro::{FullModal, FullModalContents};
+use nachiguro::{FullModal, FullModalContents, ListGroup};
 use serde::Deserialize;
 use yew::{
     format::Json,
@@ -117,7 +117,9 @@ impl SearchFullModal {
         match self.data {
             Some(ref res) => {
                 html! {
-                    <ItemListView items=res.items.clone() />
+                    <ListGroup sub_header="アイテムからさがす".to_string()>
+                        <ItemListView items=res.items.clone() />
+                    </ListGroup>
                 }
             }
             None => {

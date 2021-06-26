@@ -133,3 +133,42 @@ $highlight-color: var(--color-secondary-grouped-background);
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+// UserDetail
+.UserDetail-container {
+  margin-top: 1.5rem;
+}
+
+.UserDetail-cover {
+  height: 20rem;
+  background-color: var(--color-grouped-background);
+
+  @include mediaquery(tablet) {
+    height: 10rem;
+  }
+}
+
+.UserDetail-avatar {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 8rem;
+  height: 8rem;
+  margin-top: -4rem;
+
+  @include mediaquery(tablet) {
+    width: 4rem;
+    height: 4rem;
+    margin-top: -2rem;
+  }
+}
+
+.UserDetail-text {
+  padding-top: 1.5rem;
+
+  @include mediaquery(tablet) {
+    padding-top: 0;
+  }
+}

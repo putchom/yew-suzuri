@@ -1,9 +1,11 @@
 mod product_grid_view;
+mod user_info_view;
 
 use crate::models::user::User;
-use nachiguro::{Avatar, Container};
+use nachiguro::Container;
 use product_grid_view::ProductGridView;
 use serde::Deserialize;
+use user_info_view::UserInfoView;
 use yew::{
     format::Json,
     prelude::*,
@@ -116,19 +118,12 @@ impl UserDetail {
         match self.data {
             Some(ref res) => {
                 html! {
-                    <Container>
-                        <Avatar
-                            src={
-                                match res.user.avatar_url.clone() {
-                                Some(avatar_url) => avatar_url,
-                                None => "/images/icon_default.jpg".to_string()
-                                }
-                            }
-                            size="l"
-                        />
-                            { res.user.name.to_string() }
-                        <ProductGridView user=res.user.clone() />
-                    </Container>
+                    <>
+                        <UserInfoView user=res.user.clone() />
+                        <Container class=classes!("UserDetail-container")>
+                            <ProductGridView user=res.user.clone() />
+                        </Container>
+                    </>
                 }
             }
             None => {

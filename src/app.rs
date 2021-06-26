@@ -47,7 +47,9 @@ impl Component for App {
         html! {
             <>
                 <Header />
-                <Router<Route, ()> render=render />
+                <main class="Main">
+                    <Router<Route, ()> render=render />
+                </main>
             </>
         }
     }

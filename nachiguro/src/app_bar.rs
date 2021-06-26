@@ -12,6 +12,8 @@ pub struct Props {
     pub class: Classes,
     #[prop_or_default]
     pub is_active: bool,
+    #[prop_or_default]
+    pub is_fixed: Option<bool>,
 }
 
 impl Component for AppBar {
@@ -40,6 +42,7 @@ impl Component for AppBar {
             children,
             class,
             is_active,
+            is_fixed,
         } = &self.props;
 
         let classes: Vec<String> = vec![
@@ -48,6 +51,10 @@ impl Component for AppBar {
                 "-active".to_string()
             } else {
                 "".to_string()
+            },
+            match is_fixed {
+                Some(_) => "-fixed".to_string(),
+                None => "".to_string(),
             },
         ];
 

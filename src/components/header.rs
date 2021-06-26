@@ -27,7 +27,10 @@ impl Component for Header {
 
         html! {
             <div class="Header">
-                <AppBar is_active=true>
+                <AppBar
+                    is_active=true
+                    is_fixed=true
+                >
                     <AppBarTitle>
                         <Anchor
                             classes="Header-logo"

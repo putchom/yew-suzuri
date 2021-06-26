@@ -51,9 +51,16 @@ $highlight-color: var(--color-secondary-grouped-background);
   margin-top: 1.5rem;
 }
 
+// Main
+.Main {
+  padding-top: 3.5rem;
+}
+
 // Header
 .Header {
-  border-bottom: 1px solid var(--color-separator);
+  & > * {
+    border-bottom: 1px solid var(--color-separator);
+  }
 }
 
 .Header-logo {

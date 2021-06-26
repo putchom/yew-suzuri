@@ -23,6 +23,11 @@ pub mod avatar;
 #[cfg(feature = "avatar")]
 pub use avatar::Avatar;
 
+#[cfg(feature = "button")]
+pub mod button;
+#[cfg(feature = "avatar")]
+pub use button::Button;
+
 #[cfg(feature = "card")]
 pub mod card;
 #[cfg(feature = "card")]

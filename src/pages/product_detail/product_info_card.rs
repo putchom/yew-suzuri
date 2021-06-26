@@ -1,5 +1,5 @@
 use crate::models::product::Product;
-use nachiguro::{Card, Container, Heading, Paragraph, TextLink};
+use nachiguro::{Button, Card, Container, Heading, Paragraph, TextLink};
 use num_format::{Locale, ToFormattedString};
 use yew::prelude::*;
 
@@ -48,6 +48,16 @@ impl Component for ProductInfoCard {
                     <Paragraph>
                         { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円(税込)") }
                     </Paragraph>
+                    <div class=classes!("ProductDetail-purchase-button")>
+                        <Button
+                            element="a"
+                            href=product.sample_url.clone()
+                            intention="primary".to_string()
+                            target="_blank".to_string()
+                        >
+                            { "購入する" }
+                        </Button>
+                    </div>
                     {
                         match &product.material.description {
                             Some(description) => html! {

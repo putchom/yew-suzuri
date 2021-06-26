@@ -45,23 +45,23 @@ impl Component for ListGroup {
         let classes: Vec<String> = vec!["ncgr-list-group".to_string()];
 
         html! {
-          <section
-            class=classes!(classes, class.clone())
-          >
-            {
-              match sub_header {
-                Some(sub_header) => html! {
-                  <div class="ncgr-list-group__subheader">
-                    { sub_header }
-                  </div>
-                },
-                None => html! {
-                  <div></div>
-                },
-              }
-            }
-            { children.clone() }
-          </section>
+            <section
+                class=classes!(classes, class.clone())
+            >
+                {
+                    match sub_header {
+                        Some(sub_header) => html! {
+                            <div class="ncgr-list-group__subheader">
+                                { sub_header }
+                            </div>
+                        },
+                        None => html! {
+                            <div></div>
+                        },
+                    }
+                }
+                { children.clone() }
+            </section>
         }
     }
 }

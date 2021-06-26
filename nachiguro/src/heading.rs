@@ -45,16 +45,14 @@ impl Component for Heading {
             size,
         } = &self.props;
 
+        let classes: Vec<String> = vec!["ncgr-heading".to_string(), format!("-{}", size)];
+
         html! {
-          <@{format!("h{}", level)}
-            class=classes!(
-              "ncgr-heading",
-              format!("-{}", size),
-              class.clone(),
-            )
-          >
-            { children.clone() }
-          </@>
+            <@{format!("h{}", level)}
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </@>
         }
     }
 }

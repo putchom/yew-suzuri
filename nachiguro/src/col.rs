@@ -93,11 +93,11 @@ impl Component for Col {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </div>
+            <div
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </div>
         }
     }
 }

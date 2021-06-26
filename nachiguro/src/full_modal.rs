@@ -53,16 +53,16 @@ impl Component for FullModal {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-          >
-            <AppBar is_active=true>
-              { "さがす" }
-            </AppBar>
-            <div class="ncgr-full-modal__body">
-              { children.clone() }
+            <div
+                class=classes!(classes, class.clone())
+            >
+                <AppBar is_active=true>
+                { "さがす" }
+                </AppBar>
+                <div class="ncgr-full-modal__body">
+                { children.clone() }
+                </div>
             </div>
-          </div>
         }
     }
 }

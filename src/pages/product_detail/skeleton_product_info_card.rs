@@ -21,28 +21,30 @@ impl Component for SkeletonProductInfoCard {
 
     fn view(&self) -> Html {
         html! {
-          <Card class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()>
-            <Container>
-              <Heading level=1 size="m">
-                <Skeleton
-                  class=classes!("skeleton-heading", "-m")
-                  width="50%".to_string()
-                />
-              </Heading>
-              <Paragraph>
-                <Skeleton
-                  width="8rem".to_string()
-                  height="1rem".to_string()
-                />
-              </Paragraph>
-              <Paragraph>
-                <Skeleton
-                  width="6rem".to_string()
-                  height="1rem".to_string()
-                />
-              </Paragraph>
-            </Container>
-          </Card>
+            <Card
+                class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()
+            >
+                <Container>
+                    <Heading level=1 size="m">
+                        <Skeleton
+                            class=classes!("skeleton-heading", "-m")
+                            width="50%".to_string()
+                        />
+                    </Heading>
+                    <Paragraph>
+                        <Skeleton
+                            width="8rem".to_string()
+                            height="1rem".to_string()
+                        />
+                    </Paragraph>
+                    <Paragraph>
+                        <Skeleton
+                            width="6rem".to_string()
+                            height="1rem".to_string()
+                        />
+                    </Paragraph>
+                </Container>
+            </Card>
         }
     }
 }

@@ -51,11 +51,11 @@ impl Component for Row {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </div>
+            <div
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </div>
         }
     }
 }

@@ -65,11 +65,11 @@ impl Component for ListView {
         ];
 
         html! {
-          <ul
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </ul>
+            <ul
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </ul>
         }
     }
 }

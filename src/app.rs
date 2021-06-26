@@ -42,11 +42,11 @@ impl Component for App {
         });
 
         html! {
-          <>
-            <Header />
-            <Router<Route, ()> render=render />
-            <SearchFullModal is_active=false />
-          </>
+            <>
+                <Header />
+                <Router<Route, ()> render=render />
+                <SearchFullModal is_active=false />
+            </>
         }
     }
 }

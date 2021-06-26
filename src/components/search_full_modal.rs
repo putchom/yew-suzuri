@@ -85,26 +85,26 @@ impl Component for SearchFullModal {
 
     fn view(&self) -> Html {
         html! {
-          <FullModal is_active=self.props.is_active>
-            <FullModalContents is_active=true>
-              {
-                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                  (true, _, _) => {
-                    self.fetching()
-                  }
-                  (false, Some(_), None) => {
-                    self.success()
-                  }
-                  (false, None, None) => {
-                    self.fail()
-                  }
-                  (_, _, _) => {
-                    self.fail()
-                  }
+            <FullModal is_active=self.props.is_active>
+                <FullModalContents is_active=true>
+                {
+                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                    (true, _, _) => {
+                        self.fetching()
+                    }
+                    (false, Some(_), None) => {
+                        self.success()
+                    }
+                    (false, None, None) => {
+                        self.fail()
+                    }
+                    (_, _, _) => {
+                        self.fail()
+                    }
+                    }
                 }
-              }
-            </FullModalContents>
-          </FullModal>
+                </FullModalContents>
+            </FullModal>
         }
     }
 }
@@ -114,31 +114,31 @@ impl SearchFullModal {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <ListGroup sub_header="アイテムからさがす".to_string()>
-                    <ListView>
-                      { for res.items.iter().map( |item|
-                        html! {
-                          <ListTile primary_title=item.humanize_name.clone()>
-                            <img
-                              src={
-                                match item.icon_urls.get("png") {
-                                  Some(url) => url.to_string(),
-                                  None => "".to_string()
+                    <ListGroup sub_header="アイテムからさがす".to_string()>
+                        <ListView>
+                            { for res.items.iter().map( |item|
+                                html! {
+                                    <ListTile primary_title=item.humanize_name.clone()>
+                                        <img
+                                            src={
+                                                match item.icon_urls.get("png") {
+                                                Some(url) => url.to_string(),
+                                                None => "".to_string()
+                                                }
+                                            }
+                                            width="40px"
+                                            height="40px"
+                                        />
+                                    </ListTile>
                                 }
-                              }
-                              width="40px"
-                              height="40px"
-                            />
-                          </ListTile>
-                        }
-                      )}
-                    </ListView>
-                  </ListGroup>
+                            )}
+                        </ListView>
+                    </ListGroup>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -146,13 +146,13 @@ impl SearchFullModal {
 
     fn fetching(&self) -> Html {
         html! {
-          <>{"fetching..."}</>
+            <>{"fetching..."}</>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

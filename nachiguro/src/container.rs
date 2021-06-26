@@ -58,11 +58,11 @@ impl Component for Container {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </div>
+            <div
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </div>
         }
     }
 }

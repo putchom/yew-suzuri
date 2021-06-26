@@ -35,50 +35,50 @@ impl Component for Breadcrumbs {
         type Anchor = RouterAnchor<Route>;
 
         html! {
-          <div class="ProductDetail-breadcrumbs">
-            <ol class="ncgr-breadcrumbs">
-              <li class="ncgr-breadcrumbs__item">
-                <Anchor
-                  classes="ncgr-breadcrumbs__link"
-                  route=Route::HomePage
-                >
-                  <span>
-                    { "SUZURI" }
-                  </span>
-                </Anchor>
-              </li>
-              <li class="ncgr-breadcrumbs__item">
-                <Anchor
-                  classes="ncgr-breadcrumbs__link"
-                  route=Route::ItemDetail(product.item.id)
-                >
-                  <span>
-                    { product.item.humanize_name.to_string() }
-                  </span>
-                </Anchor>
-              </li>
-              <li class="ncgr-breadcrumbs__item">
-                <Anchor
-                  classes="ncgr-breadcrumbs__link"
-                  route=Route::UserDetail(product.material.user.id)
-                >
-                  <span>
-                    { product.material.user.name.to_string() }
-                  </span>
-                </Anchor>
-              </li>
-              <li class="ncgr-breadcrumbs__item">
-                <Anchor
-                  classes="ncgr-breadcrumbs__link ncgr-breadcrumbs__link--active"
-                  route=Route::ProductDetail(product.id)
-                >
-                  <span>
-                    { product.title.to_string() }
-                  </span>
-                </Anchor>
-              </li>
-            </ol>
-          </div>
+            <div class="ProductDetail-breadcrumbs">
+                <ol class="ncgr-breadcrumbs">
+                    <li class="ncgr-breadcrumbs__item">
+                        <Anchor
+                            classes="ncgr-breadcrumbs__link"
+                            route=Route::HomePage
+                        >
+                            <span>
+                                { "SUZURI" }
+                            </span>
+                        </Anchor>
+                    </li>
+                    <li class="ncgr-breadcrumbs__item">
+                        <Anchor
+                            classes="ncgr-breadcrumbs__link"
+                            route=Route::ItemDetail(product.item.id)
+                        >
+                            <span>
+                                { product.item.humanize_name.to_string() }
+                            </span>
+                        </Anchor>
+                    </li>
+                    <li class="ncgr-breadcrumbs__item">
+                        <Anchor
+                            classes="ncgr-breadcrumbs__link"
+                            route=Route::UserDetail(product.material.user.id)
+                        >
+                            <span>
+                                { product.material.user.name.to_string() }
+                            </span>
+                        </Anchor>
+                    </li>
+                    <li class="ncgr-breadcrumbs__item">
+                        <Anchor
+                            classes="ncgr-breadcrumbs__link ncgr-breadcrumbs__link--active"
+                            route=Route::ProductDetail(product.id)
+                        >
+                            <span>
+                                { product.title.to_string() }
+                            </span>
+                        </Anchor>
+                    </li>
+                </ol>
+            </div>
         }
     }
 }

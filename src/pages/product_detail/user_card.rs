@@ -86,44 +86,44 @@ impl Component for UserCard {
 
     fn view(&self) -> Html {
         html! {
-          <Card class=classes!("user-card")>
-            <ListView>
-              <ListTile primary_title={
-                match self.props.user.display_name.clone() {
-                  Some(display_name) => display_name.to_string(),
-                  None => self.props.user.name.to_string(),
-                }
-              }>
-                <Avatar
-                  src={
-                    match self.props.user.avatar_url.clone() {
-                      Some(avatar_url) => avatar_url,
-                      None => "./icon_default.jpg".to_string(),
+            <Card class=classes!("user-card")>
+                <ListView>
+                    <ListTile primary_title={
+                        match self.props.user.display_name.clone() {
+                            Some(display_name) => display_name.to_string(),
+                            None => self.props.user.name.to_string(),
+                        }
+                    }>
+                        <Avatar
+                            src={
+                                match self.props.user.avatar_url.clone() {
+                                    Some(avatar_url) => avatar_url,
+                                    None => "./icon_default.jpg".to_string(),
+                                }
+                            }
+                            size="m"
+                        />
+                    </ListTile>
+                </ListView>
+                <Container class=classes!("user-card__container")>
+                    {
+                        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                            (true, _, _) => {
+                                self.fetching()
+                            }
+                            (false, Some(_), None) => {
+                                self.success()
+                            }
+                            (false, None, None) => {
+                                self.fail()
+                            }
+                            (_, _, _) => {
+                                self.fail()
+                            }
+                        }
                     }
-                  }
-                  size="m"
-                />
-              </ListTile>
-            </ListView>
-            <Container class=classes!("user-card__container")>
-              {
-                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                  (true, _, _) => {
-                    self.fetching()
-                  }
-                  (false, Some(_), None) => {
-                    self.success()
-                  }
-                  (false, None, None) => {
-                    self.fail()
-                  }
-                  (_, _, _) => {
-                    self.fail()
-                  }
-                }
-              }
-            </Container>
-          </Card>
+                </Container>
+            </Card>
         }
     }
 }
@@ -146,7 +146,7 @@ impl UserCard {
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -169,7 +169,7 @@ impl UserCard {
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

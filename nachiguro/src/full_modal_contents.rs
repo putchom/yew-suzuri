@@ -52,11 +52,11 @@ impl Component for FullModalContents {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </div>
+            <div
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </div>
         }
     }
 }

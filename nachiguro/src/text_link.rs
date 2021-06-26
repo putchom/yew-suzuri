@@ -39,12 +39,12 @@ impl Component for TextLink {
         let classes: Vec<String> = vec!["ncgr-text-link".to_string()];
 
         html! {
-          <a
-            class=classes!(classes, class.clone())
-            href="#"
-          >
-            { children.clone() }
-          </a>
+            <a
+                class=classes!(classes, class.clone())
+                href="#"
+            >
+                { children.clone() }
+            </a>
         }
     }
 }

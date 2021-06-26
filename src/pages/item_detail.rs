@@ -86,27 +86,27 @@ impl Component for ItemDetail {
 
     fn view(&self) -> Html {
         html! {
-          <div class="ItemDetail-page">
-            <Container>
-              // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-              {
-                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                  (true, _, _) => {
-                    self.fetching()
-                  }
-                  (false, Some(_), None) => {
-                    self.success()
-                  }
-                  (false, None, None) => {
-                    self.fail()
-                  }
-                  (_, _, _) => {
-                    self.fail()
-                  }
+            <div class="ItemDetail-page">
+                <Container>
+                // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+                {
+                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                        (true, _, _) => {
+                            self.fetching()
+                        }
+                        (false, Some(_), None) => {
+                            self.success()
+                        }
+                        (false, None, None) => {
+                            self.fail()
+                        }
+                        (_, _, _) => {
+                            self.fail()
+                        }
+                    }
                 }
-              }
-            </Container>
-          </div>
+                </Container>
+            </div>
         }
     }
 }
@@ -116,29 +116,29 @@ impl ItemDetail {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <>
-                    <Heading
-                      class=classes!("ItemDetail-heading")
-                      level=1
-                      size={"m"}
-                    >
-                      { res.products[0].item.humanize_name.to_string() }
-                    </Heading>
-                    <Row>
-                      { for res.products.iter().map( |product|
-                        html! {
-                          <Col col={6} col_m={4} col_l={2}>
-                            <ProductCard product={product} />
-                          </Col>
-                        })
-                      }
-                    </Row>
-                  </>
+                    <>
+                        <Heading
+                            class=classes!("ItemDetail-heading")
+                            level=1
+                            size={"m"}
+                        >
+                            { res.products[0].item.humanize_name.to_string() }
+                        </Heading>
+                        <Row>
+                            { for res.products.iter().map( |product|
+                                html! {
+                                    <Col col={6} col_m={4} col_l={2}>
+                                        <ProductCard product={product} />
+                                    </Col>
+                                })
+                            }
+                        </Row>
+                    </>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -146,34 +146,35 @@ impl ItemDetail {
 
     fn fetching(&self) -> Html {
         let dummy_product_list: Vec<i32> = (0..12).collect();
+
         html! {
-          <>
-            <Heading
-              class=classes!("ItemDetail-heading")
-              level=1
-              size={"m"}
-            >
-              <Skeleton
-                class=classes!("skeleton-heading", "-m")
-                width="8rem".to_string()
-              />
-            </Heading>
-            <Row>
-              { for dummy_product_list.iter().map( |_|
-                html! {
-                  <Col col={6} col_m={4} col_l={2}>
-                    <SkeletonProductCard />
-                  </Col>
-                }
-              )}
-            </Row>
-          </>
+            <>
+                <Heading
+                    class=classes!("ItemDetail-heading")
+                    level=1
+                    size={"m"}
+                >
+                    <Skeleton
+                        class=classes!("skeleton-heading", "-m")
+                        width="8rem".to_string()
+                    />
+                </Heading>
+                <Row>
+                    { for dummy_product_list.iter().map( |_|
+                        html! {
+                            <Col col={6} col_m={4} col_l={2}>
+                                <SkeletonProductCard />
+                            </Col>
+                        }
+                    )}
+                </Row>
+            </>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

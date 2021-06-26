@@ -88,25 +88,25 @@ impl Component for UserDetail {
 
     fn view(&self) -> Html {
         html! {
-          <div class="UserDetail-page">
-            // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-            {
-              match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                (true, _, _) => {
-                  self.fetching()
+            <div class="UserDetail-page">
+                // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+                {
+                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                        (true, _, _) => {
+                            self.fetching()
+                        }
+                        (false, Some(_), None) => {
+                            self.success()
+                        }
+                        (false, None, None) => {
+                            self.fail()
+                        }
+                        (_, _, _) => {
+                            self.fail()
+                        }
+                    }
                 }
-                (false, Some(_), None) => {
-                  self.success()
-                }
-                (false, None, None) => {
-                  self.fail()
-                }
-                (_, _, _) => {
-                  self.fail()
-                }
-              }
-            }
-          </div>
+            </div>
         }
     }
 }
@@ -116,24 +116,24 @@ impl UserDetail {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <Container>
-                    <Avatar
-                      src={
-                        match res.user.avatar_url.clone() {
-                          Some(avatar_url) => avatar_url,
-                          None => "/images/icon_default.jpg".to_string()
-                        }
-                      }
-                      size="l"
-                    />
-                    { res.user.name.to_string() }
-                    <ProductGridView user=res.user.clone() />
-                  </Container>
+                    <Container>
+                        <Avatar
+                            src={
+                                match res.user.avatar_url.clone() {
+                                Some(avatar_url) => avatar_url,
+                                None => "/images/icon_default.jpg".to_string()
+                                }
+                            }
+                            size="l"
+                        />
+                            { res.user.name.to_string() }
+                        <ProductGridView user=res.user.clone() />
+                    </Container>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -141,13 +141,13 @@ impl UserDetail {
 
     fn fetching(&self) -> Html {
         html! {
-          <div>{"Fetching..."}</div>
+            <div>{"Fetching..."}</div>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

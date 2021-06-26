@@ -59,11 +59,11 @@ impl Component for Image {
         ];
 
         html! {
-          <img
-            class=classes!(classes, class.clone())
-            src=format!("{}", src)
-            style=styles.join(" ")
-          />
+            <img
+                class=classes!(classes, class.clone())
+                src=format!("{}", src)
+                style=styles.join(" ")
+            />
         }
     }
 }

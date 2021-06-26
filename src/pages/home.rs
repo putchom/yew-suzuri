@@ -79,32 +79,36 @@ impl Component for Home {
 
     fn view(&self) -> Html {
         html! {
-          <div class=classes!("Home-page")>
-            <Container>
-              <Heading class=classes!("Home-heading") level=1 size={"m"}>
-                { "ピックアップ" }
-              </Heading>
-            </Container>
-            // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-            <Container>
-              {
-                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                  (true, _, _) => {
-                    self.fetching()
-                  }
-                  (false, Some(_), None) => {
-                    self.success()
-                  }
-                  (false, None, None) => {
-                    self.fail()
-                  }
-                  (_, _, _) => {
-                    self.fail()
-                  }
+            <div class=classes!("Home-page")>
+                <Container>
+                    <Heading
+                        class=classes!("Home-heading")
+                        level=1
+                        size={"m"}
+                    >
+                        { "ピックアップ" }
+                    </Heading>
+                </Container>
+                // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+                <Container>
+                {
+                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                        (true, _, _) => {
+                            self.fetching()
+                        }
+                        (false, Some(_), None) => {
+                            self.success()
+                        }
+                        (false, None, None) => {
+                            self.fail()
+                        }
+                        (_, _, _) => {
+                            self.fail()
+                        }
+                    }
                 }
-              }
-            </Container>
-          </div>
+                </Container>
+            </div>
         }
     }
 }
@@ -114,20 +118,20 @@ impl Home {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <Row>
-                    { for res.products.iter().map( |product|
-                      html! {
-                        <Col col={6} col_m={4} col_l={2}>
-                          <ProductCard product={product} />
-                        </Col>
-                      }
-                    )}
-                  </Row>
+                    <Row>
+                        { for res.products.iter().map( |product|
+                            html! {
+                                <Col col={6} col_m={4} col_l={2}>
+                                    <ProductCard product={product} />
+                                </Col>
+                            }
+                        )}
+                    </Row>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -136,21 +140,21 @@ impl Home {
     fn fetching(&self) -> Html {
         let dummy_product_list: Vec<i32> = (0..12).collect();
         html! {
-          <Row>
-            { for dummy_product_list.iter().map( |_|
-              html! {
-                <Col col={6} col_m={4} col_l={2}>
-                  <SkeletonProductCard />
-                </Col>
-              }
-            )}
-          </Row>
+            <Row>
+                { for dummy_product_list.iter().map( |_|
+                    html! {
+                        <Col col={6} col_m={4} col_l={2}>
+                            <SkeletonProductCard />
+                        </Col>
+                    }
+                )}
+            </Row>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

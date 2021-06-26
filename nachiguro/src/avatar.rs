@@ -41,12 +41,12 @@ impl Component for Avatar {
         let classes: Vec<String> = vec!["ncgr-avatar".to_string(), format!("-{}", size)];
 
         html! {
-          <span class=classes!(classes, class.clone())>
-            <img
-              class="ncgr-avatar__image"
-              src=format!("{}", src)
-            />
-          </span>
+            <span class=classes!(classes, class.clone())>
+                <img
+                    class="ncgr-avatar__image"
+                    src=format!("{}", src)
+                />
+            </span>
         }
     }
 }

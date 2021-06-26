@@ -21,12 +21,12 @@ impl Component for SkeletonBreadcrumbs {
 
     fn view(&self) -> Html {
         html! {
-          <div class="ProductDetail-breadcrumbs">
-            <Skeleton
-              width="10rem".to_string()
-              height="0.75rem".to_string()
-            />
-          </div>
+            <div class="ProductDetail-breadcrumbs">
+                <Skeleton
+                    width="10rem".to_string()
+                    height="0.75rem".to_string()
+                />
+            </div>
         }
     }
 }

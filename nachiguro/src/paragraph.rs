@@ -39,11 +39,11 @@ impl Component for Paragraph {
         let classes: Vec<String> = vec!["ncgr-typography".to_string()];
 
         html! {
-          <p
-            class=classes!(classes, class.clone())
-          >
-            { children.clone() }
-          </p>
+            <p
+                class=classes!(classes, class.clone())
+            >
+                { children.clone() }
+            </p>
         }
     }
 }

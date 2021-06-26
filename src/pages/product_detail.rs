@@ -102,27 +102,27 @@ impl Component for ProductDetail {
 
     fn view(&self) -> Html {
         html! {
-          <div class="ProductDetail-page">
-              <Container is_gapless=true size="l".to_string()>
-              // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
-              {
-                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                  (true, _, _) => {
-                    self.fetching()
-                  }
-                  (false, Some(_), None) => {
-                    self.success()
-                  }
-                  (false, None, None) => {
-                    self.fail()
-                  }
-                  (_, _, _) => {
-                    self.fail()
-                  }
-                }
-              }
-            </Container>
-          </div>
+            <div class="ProductDetail-page">
+                <Container is_gapless=true size="l".to_string()>
+                    // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
+                    {
+                        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                            (true, _, _) => {
+                                self.fetching()
+                            }
+                            (false, Some(_), None) => {
+                                self.success()
+                            }
+                            (false, None, None) => {
+                                self.fail()
+                            }
+                            (_, _, _) => {
+                                self.fail()
+                            }
+                        }
+                    }
+                </Container>
+            </div>
         }
     }
 }
@@ -132,25 +132,25 @@ impl ProductDetail {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <>
-                    <Breadcrumbs product=res.product.clone() />
-                    <Row is_gapless=true>
-                      <Col col_m={7}>
-                        <ProductImageView product=res.product.clone() />
-                      </Col>
-                      <Col col_m={5}>
-                        <div class="ProductDetail-product-info-card">
-                          <ProductInfoCard product=res.product.clone() />
-                        </div>
-                      </Col>
-                    </Row>
-                    <UserCard user=res.product.material.user.clone() />
-                  </>
+                    <>
+                        <Breadcrumbs product=res.product.clone() />
+                        <Row is_gapless=true>
+                            <Col col_m={7}>
+                                <ProductImageView product=res.product.clone() />
+                            </Col>
+                            <Col col_m={5}>
+                                <div class="ProductDetail-product-info-card">
+                                    <ProductInfoCard product=res.product.clone() />
+                                </div>
+                            </Col>
+                        </Row>
+                        <UserCard user=res.product.material.user.clone() />
+                    </>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -158,25 +158,25 @@ impl ProductDetail {
 
     fn fetching(&self) -> Html {
         html! {
-          <>
-            <SkeletonBreadcrumbs />
-            <Row is_gapless=true>
-              <Col col_m={7}>
-                <SkeletonProductImageView />
-              </Col>
-              <Col col_m={5}>
-                <div class="ProductDetail-product-info-card">
-                  <SkeletonProductInfoCard />
-                </div>
-              </Col>
-            </Row>
-          </>
+            <>
+                <SkeletonBreadcrumbs />
+                <Row is_gapless=true>
+                    <Col col_m={7}>
+                        <SkeletonProductImageView />
+                    </Col>
+                    <Col col_m={5}>
+                        <div class="ProductDetail-product-info-card">
+                            <SkeletonProductInfoCard />
+                        </div>
+                    </Col>
+                </Row>
+            </>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

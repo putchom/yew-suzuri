@@ -32,7 +32,7 @@ impl Component for ProductImageView {
         let Props { product } = &self.props;
 
         html! {
-          <Image src=product.sample_image_url.to_string() />
+            <Image src=product.sample_image_url.to_string() />
         }
     }
 }

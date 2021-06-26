@@ -21,7 +21,7 @@ impl Component for SkeletonProductImageView {
 
     fn view(&self) -> Html {
         html! {
-          <Skeleton aspect_ratio="1/1".to_string() />
+            <Skeleton aspect_ratio="1/1".to_string() />
         }
     }
 }

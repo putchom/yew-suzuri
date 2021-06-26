@@ -11,8 +11,6 @@ pub struct ProductCard {
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
     #[prop_or_default]
-    pub class: Classes,
-    #[prop_or_default]
     pub product: Product,
 }
 
@@ -33,38 +31,33 @@ impl Component for ProductCard {
     }
 
     fn view(&self) -> Html {
-        let Props { class, product } = &self.props;
+        let Props { product } = &self.props;
 
         type Anchor = RouterAnchor<Route>;
 
         html! {
-          <div
-            class=classes!(
-              "ncgr-product-card",
-              class.clone(),
-            )
-          >
-            <Anchor
-              classes="ncgr-product-card__thumbnail"
-              route=Route::ProductDetail(product.id)
-            >
-              <img class="ncgr-product-card__image" src=product.sample_image_url.to_string() />
-            </Anchor>
-            <div class="ncgr-product-card__info">
-              <Anchor
-                classes="ncgr-product-card__name"
-                route=Route::ProductDetail(product.id)
-              >
-                { product.material.title.to_string() }
-              </Anchor>
-              <div class="ncgr-product-card__item-name">
-                { product.item.humanize_name.to_string() }
-              </div>
-              <div class="ncgr-product-card__price">
-                { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }
-              </div>
+            <div class="ncgr-product-card">
+                <Anchor
+                    classes="ncgr-product-card__thumbnail"
+                    route=Route::ProductDetail(product.id)
+                >
+                    <img class="ncgr-product-card__image" src=product.sample_image_url.to_string() />
+                </Anchor>
+                <div class="ncgr-product-card__info">
+                    <Anchor
+                        classes="ncgr-product-card__name"
+                        route=Route::ProductDetail(product.id)
+                    >
+                        { product.material.title.to_string() }
+                    </Anchor>
+                    <div class="ncgr-product-card__item-name">
+                        { product.item.humanize_name.to_string() }
+                    </div>
+                    <div class="ncgr-product-card__price">
+                        { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円") }
+                    </div>
+                </div>
             </div>
-          </div>
         }
     }
 }

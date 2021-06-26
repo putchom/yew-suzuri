@@ -48,30 +48,30 @@ impl Component for ListTile {
         let classes: Vec<String> = vec!["ncgr-list-tile".to_string()];
 
         html! {
-          <li
-            class=classes!(classes, class.clone())
-          >
-            <div class="ncgr-list-tile__leading">
-              { children.clone() }
-            </div>
-            <div class="ncgr-list-tile__title">
-              <div class="ncgr-list-tile__primary-title">
-                { primary_title }
-              </div>
-              {
-                match secondary_title {
-                  Some(secondary_title) => html! {
-                    <div class="ncgr-list-tile__secondary-title">
-                      { secondary_title }
+            <li
+                class=classes!(classes, class.clone())
+            >
+                <div class="ncgr-list-tile__leading">
+                    { children.clone() }
+                </div>
+                <div class="ncgr-list-tile__title">
+                    <div class="ncgr-list-tile__primary-title">
+                        { primary_title }
                     </div>
-                  },
-                  None => html! {
-                    <div></div>
-                  },
-                }
-              }
-            </div>
-          </li>
+                    {
+                        match secondary_title {
+                            Some(secondary_title) => html! {
+                                <div class="ncgr-list-tile__secondary-title">
+                                    { secondary_title }
+                                </div>
+                            },
+                            None => html! {
+                                <div></div>
+                            },
+                        }
+                    }
+                </div>
+            </li>
         }
     }
 }

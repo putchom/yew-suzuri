@@ -86,22 +86,22 @@ impl Component for ProductGridView {
 
     fn view(&self) -> Html {
         html! {
-          {
-            match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-              (true, _, _) => {
-                self.fetching()
-              }
-              (false, Some(_), None) => {
-                self.success()
-              }
-              (false, None, None) => {
-                self.fail()
-              }
-              (_, _, _) => {
-                self.fail()
-              }
+            {
+                match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                    (true, _, _) => {
+                        self.fetching()
+                    }
+                    (false, Some(_), None) => {
+                        self.success()
+                    }
+                    (false, None, None) => {
+                        self.fail()
+                    }
+                    (_, _, _) => {
+                        self.fail()
+                    }
+                }
             }
-          }
         }
     }
 }
@@ -111,20 +111,20 @@ impl ProductGridView {
         match self.data {
             Some(ref res) => {
                 html! {
-                  <Row>
-                    { for res.products.iter().map( |product|
-                      html! {
-                        <Col col={6} col_m={4} col_l={2}>
-                          <ProductCard product={product} />
-                        </Col>
-                      }
-                    )}
-                  </Row>
+                    <Row>
+                        { for res.products.iter().map( |product|
+                            html! {
+                                <Col col={6} col_m={4} col_l={2}>
+                                    <ProductCard product={product} />
+                                </Col>
+                            }
+                        )}
+                    </Row>
                 }
             }
             None => {
                 html! {
-                  <>{"None"}</>
+                    <>{"None"}</>
                 }
             }
         }
@@ -133,21 +133,21 @@ impl ProductGridView {
     fn fetching(&self) -> Html {
         let dummy_product_list: Vec<i32> = (0..12).collect();
         html! {
-          <Row>
-            { for dummy_product_list.iter().map( |_|
-              html! {
-                <Col col={6} col_m={4} col_l={2}>
-                  <SkeletonProductCard />
-                </Col>
-              }
-            )}
-          </Row>
+            <Row>
+                { for dummy_product_list.iter().map( |_|
+                    html! {
+                        <Col col={6} col_m={4} col_l={2}>
+                            <SkeletonProductCard />
+                        </Col>
+                    }
+                )}
+            </Row>
         }
     }
 
     fn fail(&self) -> Html {
         html! {
-          <div>{"Fail"}</div>
+            <div>{"Fail"}</div>
         }
     }
 }

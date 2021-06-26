@@ -42,18 +42,21 @@ impl Component for AppBar {
             is_active,
         } = &self.props;
 
+        let classes: Vec<String> = vec![
+            "ncgr-app-bar".to_string(),
+            if *is_active {
+                "-active".to_string()
+            } else {
+                "".to_string()
+            },
+        ];
+
         html! {
-          <div
-            class=classes!(
-              "ncgr-app-bar",
-              if *is_active { "-active".to_string() } else { "".to_string() },
-              class.clone(),
-            )
-          >
-            <div class="ncgr-app-bar__title">
-              { children.clone() }
+            <div class=classes!(classes, class.clone())>
+                <div class="ncgr-app-bar__title">
+                    { children.clone() }
+                </div>
             </div>
-          </div>
         }
     }
 }

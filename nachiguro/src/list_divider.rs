@@ -39,10 +39,10 @@ impl Component for ListDivider {
         let classes: Vec<String> = vec!["ncgr-list-divider".to_string()];
 
         html! {
-          <@{format!("{}", element)}
-            class=classes!(classes, class.clone())
-            role="separator"
-          />
+            <@{format!("{}", element)}
+                class=classes!(classes, class.clone())
+                role="separator"
+            />
         }
     }
 }

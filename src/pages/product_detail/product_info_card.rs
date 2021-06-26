@@ -33,38 +33,40 @@ impl Component for ProductInfoCard {
         let Props { product } = &self.props;
 
         html! {
-          <Card class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()>
-            <Container>
-              <Heading level=1 size="m">
-                { product.material.title.to_string() }
-              </Heading>
-              <Paragraph>
-                <TextLink>
-                  { product.item.humanize_name.to_string() }
-                </TextLink>
-              </Paragraph>
-              <Paragraph>
-                { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円(税込)") }
-              </Paragraph>
-              {
-                match &product.material.description {
-                  Some(description) => html! {
-                    <div class=classes!("ProductDetail-description")>
-                      <Heading level=2 size="s">
-                        { "このアイテムについて" }
-                      </Heading>
-                      <Paragraph>
-                        { description.to_string() }
-                      </Paragraph>
-                    </div>
-                  },
-                  None => html! {
-                    <div></div>
-                  },
-                }
-              }
-            </Container>
-          </Card>
+            <Card
+                class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()
+            >
+                <Container>
+                    <Heading level=1 size="m">
+                        { product.material.title.to_string() }
+                    </Heading>
+                    <Paragraph>
+                        <TextLink>
+                        { product.item.humanize_name.to_string() }
+                        </TextLink>
+                    </Paragraph>
+                    <Paragraph>
+                        { format!("{}{}", product.price_with_tax.to_formatted_string(&Locale::en), "円(税込)") }
+                    </Paragraph>
+                    {
+                        match &product.material.description {
+                            Some(description) => html! {
+                                <div class=classes!("ProductDetail-description")>
+                                    <Heading level=2 size="s">
+                                        { "このアイテムについて" }
+                                    </Heading>
+                                    <Paragraph>
+                                        { description.to_string() }
+                                    </Paragraph>
+                                </div>
+                            },
+                            None => html! {
+                                <div></div>
+                            },
+                        }
+                    }
+                </Container>
+            </Card>
         }
     }
 }

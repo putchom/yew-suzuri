@@ -70,10 +70,10 @@ impl Component for Skeleton {
         ];
 
         html! {
-          <div
-            class=classes!(classes, class.clone())
-            style=styles.join(" ")
-          />
+            <div
+                class=classes!(classes, class.clone())
+                style=styles.join(" ")
+            />
         }
     }
 }

@@ -9,7 +9,11 @@ pub struct Props {
   #[prop_or_default]
   pub class: Classes,
   #[prop_or_default]
+  pub height: Option<String>,
+  #[prop_or_default]
   pub src: String,
+  #[prop_or_default]
+  pub width: Option<String>,
 }
 
 impl Component for Image {
@@ -38,17 +42,31 @@ impl Component for Image {
   fn view(&self) -> Html {
     let Props {
       class,
+      height,
       src,
+      width,
     } = &self.props;
 
     let classes:Vec<String> = vec![
       "ncgr-image".to_string(),
     ];
 
+    let styles:Vec<String> = vec![
+      match height {
+        Some(height) => format!("height: {};", height),
+        None => "".to_string()
+      },
+      match width {
+        Some(width) => format!("width: {};", width),
+        None => "".to_string()
+      },
+    ];
+
     html! {
       <img
         class=classes!(classes, class.clone())
         src=format!("{}", src)
+        style=styles.join(" ")
       />
     }
   }

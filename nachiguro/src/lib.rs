@@ -23,6 +23,16 @@ pub mod container;
 #[cfg(feature = "container")]
 pub use container::Container;
 
+#[cfg(feature = "full-modal")]
+pub mod full_modal;
+#[cfg(feature = "full-modal")]
+pub use full_modal::FullModal;
+
+#[cfg(feature = "full-modal")]
+pub mod full_modal_contents;
+#[cfg(feature = "full-modal")]
+pub use full_modal_contents::FullModalContents;
+
 #[cfg(feature = "heading")]
 pub mod heading;
 #[cfg(feature = "heading")]

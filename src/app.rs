@@ -1,6 +1,7 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 use crate::components::header::Header;
+use crate::components::search_full_modal::SearchFullModal;
 use crate::pages::{
   item_detail::ItemDetail,
   product_detail::ProductDetail,
@@ -48,6 +49,7 @@ impl Component for App {
       <>
         <Header />
         <Router<Route, ()> render=render />
+        <SearchFullModal is_active=false />
       </>
     }
   }

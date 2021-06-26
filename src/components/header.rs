@@ -26,7 +26,7 @@ impl Component for Header {
 
     html! {
       <div class="Header">
-        <AppBar>
+        <AppBar is_active=true>
           <Anchor
             classes="Header-logo"
             route=Route::HomePage

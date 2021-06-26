@@ -17,6 +17,7 @@ avatar = []
 card = []
 col = []
 container = []
+full-modal = []
 heading = []
 image = []
 list-divider = []
@@ -33,6 +34,7 @@ full = [
   "card",
   "col",
   "container",
+  "full-modal",
   "heading",
   "image",
   "list-divider",

@@ -3,6 +3,21 @@ pub mod app_bar;
 #[cfg(feature = "app-bar")]
 pub use app_bar::AppBar;
 
+#[cfg(feature = "app-bar")]
+pub mod app_bar_actions;
+#[cfg(feature = "app-bar")]
+pub use app_bar_actions::AppBarActions;
+
+#[cfg(feature = "app-bar")]
+pub mod app_bar_leading;
+#[cfg(feature = "app-bar")]
+pub use app_bar_leading::AppBarLeading;
+
+#[cfg(feature = "app-bar")]
+pub mod app_bar_title;
+#[cfg(feature = "app-bar")]
+pub use app_bar_title::AppBarTitle;
+
 #[cfg(feature = "avatar")]
 pub mod avatar;
 #[cfg(feature = "avatar")]
@@ -27,6 +42,11 @@ pub use container::Container;
 pub mod full_modal;
 #[cfg(feature = "full-modal")]
 pub use full_modal::FullModal;
+
+#[cfg(feature = "full-modal")]
+pub mod full_modal_body;
+#[cfg(feature = "full-modal")]
+pub use full_modal_body::FullModalBody;
 
 #[cfg(feature = "full-modal")]
 pub mod full_modal_contents;

@@ -1,7 +1,7 @@
 use crate::components::header::Header;
-use crate::components::search_full_modal::SearchFullModal;
 use crate::pages::{
-    home::Home, item_detail::ItemDetail, product_detail::ProductDetail, user_detail::UserDetail,
+    home::Home, item_detail::ItemDetail, product_detail::ProductDetail, search::Search,
+    user_detail::UserDetail,
 };
 use crate::route::Route;
 use yew::prelude::*;
@@ -28,16 +28,19 @@ impl Component for App {
     fn view(&self) -> Html {
         let render = Router::render(move |switch: Route| match switch {
             Route::ItemDetail(id) => {
-                html! {<ItemDetail id=id />}
+                html! { <ItemDetail id=id /> }
             }
             Route::ProductDetail(id) => {
-                html! {<ProductDetail id=id />}
+                html! { <ProductDetail id=id /> }
+            }
+            Route::Search => {
+                html! { <Search /> }
             }
             Route::UserDetail(id) => {
-                html! {<UserDetail id=id />}
+                html! { <UserDetail id=id /> }
             }
-            Route::HomePage => {
-                html! {<Home />}
+            Route::Home => {
+                html! { <Home /> }
             }
         });
 
@@ -45,7 +48,6 @@ impl Component for App {
             <>
                 <Header />
                 <Router<Route, ()> render=render />
-                <SearchFullModal is_active=false />
             </>
         }
     }

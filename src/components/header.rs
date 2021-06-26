@@ -1,6 +1,6 @@
 use crate::components::logo::Logo;
 use crate::route::Route;
-use nachiguro::AppBar;
+use nachiguro::{AppBar, AppBarActions, AppBarTitle};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -28,12 +28,23 @@ impl Component for Header {
         html! {
             <div class="Header">
                 <AppBar is_active=true>
-                    <Anchor
-                        classes="Header-logo"
-                        route=Route::HomePage
-                    >
-                        <Logo />
-                    </Anchor>
+                    <AppBarTitle>
+                        <Anchor
+                            classes="Header-logo"
+                            route=Route::Home
+                        >
+                            <Logo />
+                        </Anchor>
+                    </AppBarTitle>
+                    <AppBarActions>
+                        <li>
+                            <Anchor
+                                route=Route::Search
+                            >
+                                { "さがす" }
+                            </Anchor>
+                        </li>
+                    </AppBarActions>
                 </AppBar>
             </div>
         }

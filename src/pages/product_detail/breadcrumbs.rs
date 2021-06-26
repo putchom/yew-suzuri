@@ -40,7 +40,7 @@ impl Component for Breadcrumbs {
                     <li class="ncgr-breadcrumbs__item">
                         <Anchor
                             classes="ncgr-breadcrumbs__link"
-                            route=Route::HomePage
+                            route=Route::Home
                         >
                             <span>
                                 { "SUZURI" }

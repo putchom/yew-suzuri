@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-pub struct AppBar {
+pub struct FullModalBody {
     props: Props,
 }
 
@@ -10,11 +10,9 @@ pub struct Props {
     pub children: Children,
     #[prop_or_default]
     pub class: Classes,
-    #[prop_or_default]
-    pub is_active: bool,
 }
 
-impl Component for AppBar {
+impl Component for FullModalBody {
     type Message = ();
     type Properties = Props;
 
@@ -36,20 +34,9 @@ impl Component for AppBar {
     }
 
     fn view(&self) -> Html {
-        let Props {
-            children,
-            class,
-            is_active,
-        } = &self.props;
+        let Props { children, class } = &self.props;
 
-        let classes: Vec<String> = vec![
-            "ncgr-app-bar".to_string(),
-            if *is_active {
-                "-active".to_string()
-            } else {
-                "".to_string()
-            },
-        ];
+        let classes: Vec<String> = vec!["ncgr-full-modal__body".to_string()];
 
         html! {
             <div class=classes!(classes, class.clone())>

@@ -2,7 +2,7 @@ mod item_list_view;
 
 use crate::models::item::Item;
 use item_list_view::ItemListView;
-use nachiguro::{FullModal, FullModalContents, ListGroup};
+use nachiguro::ListGroup;
 use serde::Deserialize;
 use yew::{
     format::Json,
@@ -11,10 +11,7 @@ use yew::{
 };
 
 #[derive(Clone, PartialEq, Properties)]
-pub struct Props {
-    #[prop_or_default]
-    pub is_active: bool,
-}
+pub struct Props {}
 
 #[derive(Deserialize, Clone)]
 pub struct ResponseData {
@@ -26,8 +23,7 @@ pub enum Msg {
     SuccessFetch(ResponseData),
     FailFetch,
 }
-pub struct SearchFullModal {
-    props: Props,
+pub struct Search {
     task: Option<FetchTask>,
     is_loading: bool,
     data: Option<ResponseData>,
@@ -35,15 +31,14 @@ pub struct SearchFullModal {
     error: Option<String>,
 }
 
-impl Component for SearchFullModal {
+impl Component for Search {
     type Message = Msg;
-    type Properties = Props;
+    type Properties = ();
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+    fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         link.send_message(Msg::StartFetch);
 
         Self {
-            props,
             task: None,
             is_loading: true,
             data: None,
@@ -88,31 +83,29 @@ impl Component for SearchFullModal {
 
     fn view(&self) -> Html {
         html! {
-            <FullModal is_active=self.props.is_active>
-                <FullModalContents is_active=true>
-                    {
-                        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                            (true, _, _) => {
-                                self.fetching()
-                            }
-                            (false, Some(_), None) => {
-                                self.success()
-                            }
-                            (false, None, None) => {
-                                self.fail()
-                            }
-                            (_, _, _) => {
-                                self.fail()
-                            }
+            <div class=classes!("Search-page")>
+                {
+                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                        (true, _, _) => {
+                            self.fetching()
+                        }
+                        (false, Some(_), None) => {
+                            self.success()
+                        }
+                        (false, None, None) => {
+                            self.fail()
+                        }
+                        (_, _, _) => {
+                            self.fail()
                         }
                     }
-                </FullModalContents>
-            </FullModal>
+                }
+            </div>
         }
     }
 }
 
-impl SearchFullModal {
+impl Search {
     fn success(&self) -> Html {
         match self.data {
             Some(ref res) => {

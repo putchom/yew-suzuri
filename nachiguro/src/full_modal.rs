@@ -1,4 +1,3 @@
-use crate::app_bar::AppBar;
 use yew::prelude::*;
 
 pub struct FullModal {
@@ -53,15 +52,8 @@ impl Component for FullModal {
         ];
 
         html! {
-            <div
-                class=classes!(classes, class.clone())
-            >
-                <AppBar is_active=true>
-                { "さがす" }
-                </AppBar>
-                <div class="ncgr-full-modal__body">
+            <div class=classes!(classes, class.clone())>
                 { children.clone() }
-                </div>
             </div>
         }
     }

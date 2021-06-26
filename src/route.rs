@@ -6,8 +6,10 @@ pub enum Route {
     ItemDetail(i32),
     #[to = "/product/{id}"]
     ProductDetail(i32),
+    #[to = "/search"]
+    Search,
     #[to = "/user/{id}"]
     UserDetail(i32),
     #[to = "/"]
-    HomePage,
+    Home,
 }

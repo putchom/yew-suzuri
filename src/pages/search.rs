@@ -1,9 +1,11 @@
 mod item_list_view;
+mod skeleton_item_list_view;
 
 use crate::models::item::Item;
 use item_list_view::ItemListView;
 use nachiguro::ListGroup;
 use serde::Deserialize;
+use skeleton_item_list_view::SkeletonItemListView;
 use yew::{
     format::Json,
     prelude::*,
@@ -84,22 +86,24 @@ impl Component for Search {
     fn view(&self) -> Html {
         html! {
             <div class=classes!("Search-page")>
-                {
-                    match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                        (true, _, _) => {
-                            self.fetching()
-                        }
-                        (false, Some(_), None) => {
-                            self.success()
-                        }
-                        (false, None, None) => {
-                            self.fail()
-                        }
-                        (_, _, _) => {
-                            self.fail()
+                <ListGroup sub_header="アイテムからさがす".to_string()>
+                    {
+                        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                            (true, _, _) => {
+                                self.fetching()
+                            }
+                            (false, Some(_), None) => {
+                                self.success()
+                            }
+                            (false, None, None) => {
+                                self.fail()
+                            }
+                            (_, _, _) => {
+                                self.fail()
+                            }
                         }
                     }
-                }
+                </ListGroup>
             </div>
         }
     }
@@ -110,9 +114,7 @@ impl Search {
         match self.data {
             Some(ref res) => {
                 html! {
-                    <ListGroup sub_header="アイテムからさがす".to_string()>
-                        <ItemListView items=res.items.clone() />
-                    </ListGroup>
+                    <ItemListView items=res.items.clone() />
                 }
             }
             None => {
@@ -125,7 +127,7 @@ impl Search {
 
     fn fetching(&self) -> Html {
         html! {
-            <>{"fetching..."}</>
+            <SkeletonItemListView />
         }
     }
 

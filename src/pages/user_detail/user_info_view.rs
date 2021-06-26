@@ -1,5 +1,5 @@
 use crate::models::user::User;
-use nachiguro::{Avatar, Col, Container, Heading, Row};
+use nachiguro::{Col, Container, Heading, Row};
 use yew::prelude::*;
 
 pub struct UserInfoView {
@@ -54,14 +54,21 @@ impl Component for UserInfoView {
                         </Col>
                         <Col col_m={9}>
                             <div class="UserDetail-text">
-                                <Heading size="m".to_string()>
-                                    {
-                                        match user.display_name.clone() {
-                                            Some(display_name) => display_name,
-                                            None => user.name.to_string()
+                                <div>
+                                    <Heading size="m".to_string()>
+                                        {
+                                            match user.display_name.clone() {
+                                                Some(display_name) => display_name,
+                                                None => user.name.to_string()
+                                            }
                                         }
-                                    }
-                                </Heading>
+                                    </Heading>
+                                </div>
+                                <div>
+                                    <Heading size="s".to_string() class=classes!("ncgr-typography-secondary-label")>
+                                        { user.name.to_string() }
+                                    </Heading>
+                                </div>
                             </div>
                         </Col>
                     </Row>

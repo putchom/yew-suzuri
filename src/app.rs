@@ -1,7 +1,7 @@
 use crate::components::header::Header;
 use crate::pages::{
     home::Home, item_detail::ItemDetail, product_detail::ProductDetail, search::Search,
-    user_detail::UserDetail,
+    search_result::SearchResult, user_detail::UserDetail,
 };
 use crate::route::Route;
 use yew::prelude::*;
@@ -35,6 +35,9 @@ impl Component for App {
             }
             Route::Search => {
                 html! { <Search /> }
+            }
+            Route::SearchResult(query) => {
+                html! { <SearchResult query=query /> }
             }
             Route::UserDetail(id) => {
                 html! { <UserDetail id=id /> }

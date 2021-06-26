@@ -8,6 +8,8 @@ pub enum Route {
     ProductDetail(i32),
     #[to = "/search"]
     Search,
+    #[to = "/result/{query}"]
+    SearchResult(String),
     #[to = "/user/{id}"]
     UserDetail(i32),
     #[to = "/"]

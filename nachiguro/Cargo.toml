@@ -29,6 +29,7 @@ paragraph = []
 row = []
 skeleton = []
 text-link = []
+textfield = []
 full = [
   "app-bar",
   "avatar",
@@ -47,5 +48,6 @@ full = [
   "row",
   "skeleton",
   "text-link",
+  "textfield",
 ]
 default = ["full"]

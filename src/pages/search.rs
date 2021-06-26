@@ -2,15 +2,18 @@ mod item_list_view;
 mod skeleton_item_list_view;
 
 use crate::models::item::Item;
+use crate::route::Route;
 use item_list_view::ItemListView;
-use nachiguro::ListGroup;
+use nachiguro::{Container, ListGroup, Textfield};
 use serde::Deserialize;
 use skeleton_item_list_view::SkeletonItemListView;
 use yew::{
+    events::InputData,
     format::Json,
     prelude::*,
     services::fetch::{FetchService, FetchTask, Response},
 };
+use yew_router::prelude::*;
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {}
@@ -24,10 +27,12 @@ pub enum Msg {
     StartFetch,
     SuccessFetch(ResponseData),
     FailFetch,
+    OnInput(String),
 }
 pub struct Search {
     task: Option<FetchTask>,
     is_loading: bool,
+    input_value: String,
     data: Option<ResponseData>,
     link: ComponentLink<Self>,
     error: Option<String>,
@@ -43,6 +48,7 @@ impl Component for Search {
         Self {
             task: None,
             is_loading: true,
+            input_value: "".to_string(),
             data: None,
             link,
             error: None,
@@ -75,6 +81,9 @@ impl Component for Search {
                 self.error = Some("error".to_string());
                 self.is_loading = false;
             }
+            Msg::OnInput(value) => {
+                self.input_value = value;
+            }
         }
         true
     }
@@ -84,26 +93,45 @@ impl Component for Search {
     }
 
     fn view(&self) -> Html {
+        type Anchor = RouterAnchor<Route>;
+
         html! {
             <div class=classes!("Search-page")>
-                <ListGroup sub_header="アイテムからさがす".to_string()>
-                    {
-                        match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
-                            (true, _, _) => {
-                                self.fetching()
-                            }
-                            (false, Some(_), None) => {
-                                self.success()
-                            }
-                            (false, None, None) => {
-                                self.fail()
-                            }
-                            (_, _, _) => {
-                                self.fail()
+                <Container is_gapless=true size="m".to_string()>
+                    <Container class=classes!("Search-textfield-container")>
+                        // <Textfield
+                        //     input_type="text"
+                        //     label_text="キーワードからさがす".to_string()
+                        //     name="search"
+                        //     placeholder="例）犬, 忍者スリスリくん".to_string()
+                        // />
+                        <input
+                            type="text" value={self.input_value.clone()}
+                            oninput=self.link.callback(|event: InputData| Msg::OnInput(event.value))
+                        />
+                        <Anchor route=Route::SearchResult(self.input_value.clone())>
+                            { "さがす" }
+                        </Anchor>
+                    </Container>
+                    <ListGroup sub_header="カテゴリーからさがす".to_string()>
+                        {
+                            match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
+                                (true, _, _) => {
+                                    self.fetching()
+                                }
+                                (false, Some(_), None) => {
+                                    self.success()
+                                }
+                                (false, None, None) => {
+                                    self.fail()
+                                }
+                                (_, _, _) => {
+                                    self.fail()
+                                }
                             }
                         }
-                    }
-                </ListGroup>
+                    </ListGroup>
+                </Container>
             </div>
         }
     }

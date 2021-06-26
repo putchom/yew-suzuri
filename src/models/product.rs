@@ -29,6 +29,14 @@ impl Product {
             user_name
         ))
     }
+
+    pub fn get_product_list_by_query(query: &str) -> Request<Nothing> {
+        api::get(format!(
+            "https://suzuri.jp/api/v1/products/search?q={}",
+            query
+        ))
+    }
+
     pub fn get_product_info_by_id(id: i32) -> Request<Nothing> {
         api::get(format!("https://suzuri.jp/api/v1/products/{}", id))
     }

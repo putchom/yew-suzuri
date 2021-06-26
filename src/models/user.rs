@@ -12,6 +12,10 @@ pub struct User {
 }
 
 impl User {
+    pub fn get_user_list_by_name(name: String) -> Request<Nothing> {
+        api::get(format!("https://suzuri.jp/api/v1/users?name={}", name))
+    }
+
     pub fn get_user_info_by_id(id: i32) -> Request<Nothing> {
         api::get(format!("https://suzuri.jp/api/v1/users/{}", id))
     }

@@ -1,7 +1,7 @@
 use crate::models::product::Product;
 use crate::route::Route;
 use num_format::{Locale, ToFormattedString};
-use yew::{html::ImplicitClone, prelude::*};
+use yew::prelude::*;
 use yew_router::prelude::*;
 
 pub struct ProductCard {
@@ -61,5 +61,3 @@ impl Component for ProductCard {
         }
     }
 }
-
-impl ImplicitClone for Product {}

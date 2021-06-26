@@ -128,7 +128,7 @@ impl ItemDetail {
                             { for res.products.iter().map( |product|
                                 html! {
                                     <Col col={6} col_m={4} col_l={2}>
-                                        <ProductCard product={product} />
+                                        <ProductCard product=product.clone() />
                                     </Col>
                                 })
                             }

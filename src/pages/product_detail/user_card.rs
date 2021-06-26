@@ -1,7 +1,10 @@
+mod user_list_view;
+
 use crate::components::{product_card::ProductCard, skeleton_product_card::SkeletonProductCard};
 use crate::models::{product::Product, user::User};
-use nachiguro::{Avatar, Card, Col, Container, ListTile, ListView, Row};
+use nachiguro::{Card, Col, Container, Row};
 use serde::Deserialize;
+use user_list_view::UserListView;
 use yew::{
     format::Json,
     prelude::*,
@@ -87,24 +90,7 @@ impl Component for UserCard {
     fn view(&self) -> Html {
         html! {
             <Card class=classes!("user-card")>
-                <ListView>
-                    <ListTile primary_title={
-                        match self.props.user.display_name.clone() {
-                            Some(display_name) => display_name.to_string(),
-                            None => self.props.user.name.to_string(),
-                        }
-                    }>
-                        <Avatar
-                            src={
-                                match self.props.user.avatar_url.clone() {
-                                    Some(avatar_url) => avatar_url,
-                                    None => "./icon_default.jpg".to_string(),
-                                }
-                            }
-                            size="m"
-                        />
-                    </ListTile>
-                </ListView>
+                <UserListView user=self.props.user.clone() />
                 <Container class=classes!("user-card__container")>
                     {
                         match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
@@ -137,7 +123,7 @@ impl UserCard {
                     { for res.products.iter().map( |product|
                       html! {
                         <Col col={6} col_m={4} col_l={2}>
-                          <ProductCard product={product} />
+                          <ProductCard product=product.clone() />
                         </Col>
                       }
                     )}

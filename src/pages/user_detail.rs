@@ -1,10 +1,12 @@
 mod product_grid_view;
+mod skeleton_user_info_view;
 mod user_info_view;
 
 use crate::models::user::User;
 use nachiguro::Container;
 use product_grid_view::ProductGridView;
 use serde::Deserialize;
+use skeleton_user_info_view::SkeletonUserInfoView;
 use user_info_view::UserInfoView;
 use yew::{
     format::Json,
@@ -136,7 +138,9 @@ impl UserDetail {
 
     fn fetching(&self) -> Html {
         html! {
-            <div>{"Fetching..."}</div>
+            <>
+                <SkeletonUserInfoView />
+            </>
         }
     }
 

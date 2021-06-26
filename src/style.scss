@@ -38,6 +38,13 @@ $highlight-color: var(--color-secondary-grouped-background);
       height: 1.875rem;
     }
   }
+  &.-s {
+    height: 1rem;
+
+    @include mq-boundary-up(s) {
+      height: 1.125rem;
+    }
+  }
 }
 
 // user-card
@@ -120,11 +127,11 @@ $highlight-color: var(--color-secondary-grouped-background);
 }
 
 .ProductDetail-product-info-card {
-  padding-left: 1.5rem;
+  padding-top: 1.5rem;
 
-  @include mediaquery(tablet) {
-    padding-top: 1.5rem;
-    padding-left: 0;
+  @include mq-boundary-up(s) {
+    padding-top: 0;
+    padding-left: 1.5rem;
   }
 }
 
@@ -133,12 +140,14 @@ $highlight-color: var(--color-secondary-grouped-background);
 }
 
 .ProductDetail-breadcrumbs {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 
-  @include mediaquery(tablet) {
-    padding-right: 1rem;
-    padding-left: 1rem;
+  @include mq-boundary-up(m) {
+    padding-top: 1rem;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    padding-left: 0;
   }
 }
 
@@ -153,11 +162,11 @@ $highlight-color: var(--color-secondary-grouped-background);
 }
 
 .UserDetail-cover {
-  height: 20rem;
+  height: 10rem;
   background-color: var(--color-grouped-background);
 
-  @include mediaquery(tablet) {
-    height: 10rem;
+  @include mq-boundary-up(m) {
+    height: 20rem;
   }
 }
 
@@ -167,21 +176,19 @@ $highlight-color: var(--color-secondary-grouped-background);
   overflow: hidden;
   vertical-align: middle;
   box-sizing: border-box;
-  width: 8rem;
-  height: 8rem;
-  margin-top: -4rem;
+  width: 4rem;
+  height: 4rem;
+  margin-top: -2rem;
 
-  @include mediaquery(tablet) {
-    width: 4rem;
-    height: 4rem;
-    margin-top: -2rem;
+  @include mq-boundary-up(m) {
+    width: 8rem;
+    height: 8rem;
+    margin-top: -4rem;
   }
 }
 
 .UserDetail-text {
-  padding-top: 1.5rem;
-
-  @include mediaquery(tablet) {
-    padding-top: 0;
+  @include mq-boundary-up(m) {
+    padding-top: 1.5rem;
   }
 }

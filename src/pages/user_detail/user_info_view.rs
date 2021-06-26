@@ -46,8 +46,8 @@ impl Component for UserInfoView {
                                 class="UserDetail-avatar"
                                 src={
                                     match user.avatar_url.clone() {
-                                    Some(avatar_url) => avatar_url,
-                                    None => "/images/icon_default.jpg".to_string()
+                                        Some(avatar_url) => avatar_url,
+                                        None => "/images/icon_default.jpg".to_string()
                                     }
                                 }
                             />

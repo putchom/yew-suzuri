@@ -1,13 +1,10 @@
-use serde::{
-  Deserialize,
-  Serialize
-};
 use crate::models::user::User;
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Clone, Default, PartialEq, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Material {
-  pub title: String,
-  pub description: Option<String>,
-  pub user: User,
+    pub title: String,
+    pub description: Option<String>,
+    pub user: User,
 }

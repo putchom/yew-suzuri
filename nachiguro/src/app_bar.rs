@@ -1,61 +1,59 @@
 use yew::prelude::*;
 
 pub struct AppBar {
-  props: Props,
+    props: Props,
 }
 
 #[derive(Clone, PartialEq, Properties)]
 pub struct Props {
-  #[prop_or_default]
-  pub children: Children,
-  #[prop_or_default]
-  pub class: Classes,
-  #[prop_or_default]
-  pub is_active: bool,
+    #[prop_or_default]
+    pub children: Children,
+    #[prop_or_default]
+    pub class: Classes,
+    #[prop_or_default]
+    pub is_active: bool,
 }
 
 impl Component for AppBar {
-  type Message = ();
-  type Properties = Props;
+    type Message = ();
+    type Properties = Props;
 
-  fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
-    Self {
-      props,
+    fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
+        Self { props }
     }
-  }
 
-  fn update(&mut self, _: Self::Message) -> ShouldRender {
-    false
-  }
-
-  fn change(&mut self, props: Self::Properties) -> bool {
-    if self.props != props {
-      self.props = props;
-      true
-    } else {
-      false
+    fn update(&mut self, _: Self::Message) -> ShouldRender {
+        false
     }
-  }
 
-  fn view(&self) -> Html {
-    let Props {
-      children,
-      class,
-      is_active
-    } = &self.props;
-
-    html! {
-      <div
-        class=classes!(
-          "ncgr-app-bar",
-          if *is_active { "-active".to_string() } else { "".to_string() },
-          class.clone(),
-        )
-      >
-        <div class="ncgr-app-bar__title">
-          { children.clone() }
-        </div>
-      </div>
+    fn change(&mut self, props: Self::Properties) -> bool {
+        if self.props != props {
+            self.props = props;
+            true
+        } else {
+            false
+        }
     }
-  }
+
+    fn view(&self) -> Html {
+        let Props {
+            children,
+            class,
+            is_active,
+        } = &self.props;
+
+        html! {
+          <div
+            class=classes!(
+              "ncgr-app-bar",
+              if *is_active { "-active".to_string() } else { "".to_string() },
+              class.clone(),
+            )
+          >
+            <div class="ncgr-app-bar__title">
+              { children.clone() }
+            </div>
+          </div>
+        }
+    }
 }

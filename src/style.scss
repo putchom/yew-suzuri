@@ -1,5 +1,5 @@
-$ncgr-assets-prefix: 'path/to/public/nachiguro/assets/';
-@import '../node_modules/nachiguro/src/nachiguro';
+$ncgr-assets-prefix: "path/to/public/nachiguro/assets/";
+@import "../node_modules/nachiguro/src/nachiguro";
 
 // Skeleton
 $base-color: var(--color-tertiary-grouped-background);
@@ -66,7 +66,7 @@ $highlight-color: var(--color-secondary-grouped-background);
 .Header-logo-image {
   width: 5rem;
 
-  @media (prefers-color-scheme: dark){
+  @media (prefers-color-scheme: dark) {
     g,
     path {
       fill: var(--color-label);
@@ -117,7 +117,7 @@ $highlight-color: var(--color-secondary-grouped-background);
 .ProductDetail-breadcrumbs {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  
+
   @include mediaquery(tablet) {
     padding-right: 1rem;
     padding-left: 1rem;

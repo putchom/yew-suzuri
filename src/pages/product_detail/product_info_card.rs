@@ -1,5 +1,8 @@
 use crate::models::product::Product;
-use nachiguro::{Button, Card, Container, Heading, Paragraph, TextLink};
+use nachiguro::{
+    types::{background_color::BackgroundColor, heading_level::HeadingLevel, size::Size},
+    Button, Card, Container, Heading, Paragraph, TextLink,
+};
 use num_format::{Locale, ToFormattedString};
 use yew::prelude::*;
 
@@ -34,10 +37,14 @@ impl Component for ProductInfoCard {
 
         html! {
             <Card
-                class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()
+                background_color=BackgroundColor::SecondaryGroupedBackground
+                class=classes!("ProductDetail-product-card")
             >
                 <Container>
-                    <Heading level=1 size="m">
+                    <Heading
+                        level=HeadingLevel::One
+                        size=Size::M
+                    >
                         { product.material.title.to_string() }
                     </Heading>
                     <Paragraph>
@@ -62,7 +69,10 @@ impl Component for ProductInfoCard {
                         match &product.material.description {
                             Some(description) => html! {
                                 <div class=classes!("ProductDetail-description")>
-                                    <Heading level=2 size="s">
+                                    <Heading
+                                        level=HeadingLevel::Two
+                                        size=Size::S
+                                    >
                                         { "このアイテムについて" }
                                     </Heading>
                                     <Paragraph>

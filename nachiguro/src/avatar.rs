@@ -1,3 +1,4 @@
+use crate::types::size::Size;
 use yew::prelude::*;
 
 pub struct Avatar {
@@ -9,7 +10,7 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub size: String,
+    pub size: Size,
     #[prop_or_default]
     pub src: String,
 }

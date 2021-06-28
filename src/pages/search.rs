@@ -4,7 +4,10 @@ mod skeleton_item_list_view;
 use crate::models::item::Item;
 use crate::route::Route;
 use item_list_view::ItemListView;
-use nachiguro::{Col, Container, ListGroup, Row};
+use nachiguro::{
+    types::{col_num::ColNum, size::Size},
+    Col, Container, ListGroup, Row,
+};
 use serde::Deserialize;
 use skeleton_item_list_view::SkeletonItemListView;
 use yew::{
@@ -97,10 +100,10 @@ impl Component for Search {
 
         html! {
             <div class=classes!("Search-page")>
-                <Container is_gapless=true size="m".to_string()>
+                <Container is_gapless=true size=Size::M>
                     <Container class=classes!("Search-textfield-container")>
                         <Row>
-                            <Col col={9}>
+                            <Col col=ColNum::Nine>
                                 // TODO: Textfieldにoninputわたせるようにする
                                 <div class="ncgr-textfield">
                                     <label class="ncgr-textfield__label" for="query">
@@ -116,7 +119,7 @@ impl Component for Search {
                                     />
                                 </div>
                             </Col>
-                            <Col col={3}>
+                            <Col col=ColNum::Three>
                                 // TODO: ButtonでAnchorがつかえるようにする
                                 <Anchor
                                     classes="ncgr-button ncgr-button--primary"

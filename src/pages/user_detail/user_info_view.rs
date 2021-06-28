@@ -1,5 +1,8 @@
 use crate::models::user::User;
-use nachiguro::{Col, Container, Heading, Row};
+use nachiguro::{
+    types::{col_num::ColNum, size::Size},
+    Col, Container, Heading, Row,
+};
 use yew::prelude::*;
 
 pub struct UserInfoView {
@@ -39,9 +42,9 @@ impl Component for UserInfoView {
         html! {
             <>
                 <div class="UserDetail-cover"></div>
-                <Container size="m".to_string()>
+                <Container size=Size::M>
                     <Row>
-                        <Col col_m={3}>
+                        <Col col_m=ColNum::Three>
                             <img
                                 class="UserDetail-avatar"
                                 src={
@@ -52,10 +55,10 @@ impl Component for UserInfoView {
                                 }
                             />
                         </Col>
-                        <Col col_m={9}>
+                        <Col col_m=ColNum::Nine>
                             <div class="UserDetail-text">
                                 <div>
-                                    <Heading size="m".to_string()>
+                                    <Heading size=Size::M>
                                         {
                                             match user.display_name.clone() {
                                                 Some(display_name) => display_name,
@@ -65,7 +68,10 @@ impl Component for UserInfoView {
                                     </Heading>
                                 </div>
                                 <div>
-                                    <Heading size="s".to_string() class=classes!("ncgr-typography-secondary-label")>
+                                    <Heading
+                                        size=Size::S
+                                        class=classes!("ncgr-typography-secondary-label")
+                                    >
                                         { user.name.to_string() }
                                     </Heading>
                                 </div>

@@ -1,4 +1,7 @@
-use nachiguro::{Col, Container, Row, Skeleton};
+use nachiguro::{
+    types::{col_num::ColNum, size::Size},
+    Col, Container, Row, Skeleton,
+};
 use yew::prelude::*;
 
 pub struct SkeletonUserInfoView {}
@@ -23,12 +26,12 @@ impl Component for SkeletonUserInfoView {
         html! {
             <>
                 <Skeleton class=classes!("UserDetail-cover") />
-                <Container size="m".to_string()>
+                <Container size=Size::M>
                     <Row>
-                        <Col col_m={3}>
+                        <Col col_m=ColNum::Three>
                             <Skeleton class=classes!("UserDetail-avatar") />
                         </Col>
-                        <Col col_m={9}>
+                        <Col col_m=ColNum::Nine>
                             <div class="UserDetail-text">
                                 <div>
                                     <Skeleton

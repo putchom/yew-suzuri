@@ -1,4 +1,7 @@
-use nachiguro::{Card, Container, Heading, Paragraph, Skeleton};
+use nachiguro::{
+    types::{background_color::BackgroundColor, heading_level::HeadingLevel, size::Size},
+    Card, Container, Heading, Paragraph, Skeleton,
+};
 use yew::prelude::*;
 
 pub struct SkeletonProductInfoCard {}
@@ -22,10 +25,14 @@ impl Component for SkeletonProductInfoCard {
     fn view(&self) -> Html {
         html! {
             <Card
-                class=classes!("ProductDetail-product-card") color="secondary-grouped-background".to_string()
+                background_color=BackgroundColor::SecondaryGroupedBackground
+                class=classes!("ProductDetail-product-card")
             >
                 <Container>
-                    <Heading level=1 size="m">
+                    <Heading
+                        level=HeadingLevel::One
+                        size=Size::M
+                    >
                         <Skeleton
                             class=classes!("skeleton-heading", "-m")
                             width="50%".to_string()

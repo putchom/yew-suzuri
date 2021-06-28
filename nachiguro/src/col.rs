@@ -1,3 +1,5 @@
+use crate::types::col_num::ColNum;
+use crate::types::offset_num::OffsetNum;
 use yew::prelude::*;
 
 pub struct Col {
@@ -11,19 +13,19 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub col: Option<i32>,
+    pub col: Option<ColNum>,
     #[prop_or_default]
-    pub col_s: Option<i32>,
+    pub col_s: Option<ColNum>,
     #[prop_or_default]
-    pub col_m: Option<i32>,
+    pub col_m: Option<ColNum>,
     #[prop_or_default]
-    pub col_l: Option<i32>,
+    pub col_l: Option<ColNum>,
     #[prop_or_default]
-    pub offset_s: Option<i32>,
+    pub offset_s: Option<OffsetNum>,
     #[prop_or_default]
-    pub offset_m: Option<i32>,
+    pub offset_m: Option<OffsetNum>,
     #[prop_or_default]
-    pub offset_l: Option<i32>,
+    pub offset_l: Option<OffsetNum>,
 }
 
 impl Component for Col {

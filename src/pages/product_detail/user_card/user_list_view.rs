@@ -1,6 +1,6 @@
 use crate::models::user::User;
 use crate::route::Route;
-use nachiguro::{Avatar, ListTileLeading, ListTileTitle, ListView};
+use nachiguro::{types::size::Size, Avatar, ListTileLeading, ListTileTitle, ListView};
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -56,7 +56,7 @@ impl Component for UserListView {
                                         None => "./icon_default.jpg".to_string(),
                                     }
                                 }
-                                size="m"
+                                size=Size::M
                             />
                         </ListTileLeading>
                         <ListTileTitle

@@ -1,4 +1,5 @@
 #![allow(unused_variables)]
+use crate::types::size::Size;
 use yew::prelude::*;
 
 pub struct Button {
@@ -28,7 +29,7 @@ pub struct Props {
     #[prop_or_default]
     pub is_loading: Option<bool>,
     #[prop_or_default]
-    pub size: Option<String>,
+    pub size: Option<Size>,
     #[prop_or_default]
     pub target: Option<String>,
     #[prop_or_default]

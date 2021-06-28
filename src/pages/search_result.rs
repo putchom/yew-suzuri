@@ -1,7 +1,10 @@
 mod product_grid_view;
 mod user_list_view;
 
-use nachiguro::{Container, Heading};
+use nachiguro::{
+    types::{heading_level::HeadingLevel, size::Size},
+    Container, Heading,
+};
 use product_grid_view::ProductGridView;
 use user_list_view::UserListView;
 use yew::prelude::*;
@@ -37,8 +40,8 @@ impl Component for SearchResult {
                 <Container>
                     <Heading
                         class=classes!("Home-heading")
-                        level=1
-                        size={"m"}
+                        level=HeadingLevel::One
+                        size=Size::M
                     >
                         { "検索結果" }
                     </Heading>

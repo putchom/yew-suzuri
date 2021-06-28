@@ -10,7 +10,10 @@ mod user_card;
 
 use crate::models::product::Product;
 use breadcrumbs::Breadcrumbs;
-use nachiguro::{Col, Container, Row};
+use nachiguro::{
+    types::{col_num::ColNum, size::Size},
+    Col, Container, Row,
+};
 use product_image_view::ProductImageView;
 use product_info_card::ProductInfoCard;
 use serde::Deserialize;
@@ -103,7 +106,7 @@ impl Component for ProductDetail {
     fn view(&self) -> Html {
         html! {
             <div class="ProductDetail-page">
-                <Container is_gapless=true size="l".to_string()>
+                <Container is_gapless=true size=Size::L>
                     // <button onclick=self.link.callback(|_| Msg::StartFetch)>{"Refetch"}</button>
                     {
                         match (self.is_loading, self.data.as_ref(), self.error.as_ref()) {
@@ -135,10 +138,10 @@ impl ProductDetail {
                     <>
                         <Breadcrumbs product=res.product.clone() />
                         <Row is_gapless=true>
-                            <Col col_m={7}>
+                            <Col col_m=ColNum::Seven>
                                 <ProductImageView product=res.product.clone() />
                             </Col>
-                            <Col col_m={5}>
+                            <Col col_m=ColNum::Five>
                                 <div class="ProductDetail-product-info-card">
                                     <ProductInfoCard product=res.product.clone() />
                                 </div>
@@ -161,10 +164,10 @@ impl ProductDetail {
             <>
                 <SkeletonBreadcrumbs />
                 <Row is_gapless=true>
-                    <Col col_m={7}>
+                    <Col col_m=ColNum::Seven>
                         <SkeletonProductImageView />
                     </Col>
-                    <Col col_m={5}>
+                    <Col col_m=ColNum::Five>
                         <div class="ProductDetail-product-info-card">
                             <SkeletonProductInfoCard />
                         </div>

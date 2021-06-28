@@ -1,6 +1,9 @@
 use crate::components::{product_card::ProductCard, skeleton_product_card::SkeletonProductCard};
 use crate::models::product::Product;
-use nachiguro::{Col, Container, Heading, Row, Skeleton};
+use nachiguro::{
+    types::{col_num::ColNum, heading_level::HeadingLevel, size::Size},
+    Col, Container, Heading, Row, Skeleton,
+};
 use serde::Deserialize;
 use yew::{
     format::Json,
@@ -119,15 +122,19 @@ impl ItemDetail {
                     <>
                         <Heading
                             class=classes!("ItemDetail-heading")
-                            level=1
-                            size={"m"}
+                            level=HeadingLevel::One
+                            size=Size::M
                         >
                             { res.products[0].item.humanize_name.to_string() }
                         </Heading>
                         <Row>
                             { for res.products.iter().map( |product|
                                 html! {
-                                    <Col col={6} col_m={4} col_l={2}>
+                                    <Col
+                                        col=ColNum::Six
+                                        col_m=ColNum::Four
+                                        col_l=ColNum::Two
+                                    >
                                         <ProductCard product=product.clone() />
                                     </Col>
                                 })
@@ -151,8 +158,8 @@ impl ItemDetail {
             <>
                 <Heading
                     class=classes!("ItemDetail-heading")
-                    level=1
-                    size={"m"}
+                    level=HeadingLevel::One
+                    size=Size::M
                 >
                     <Skeleton
                         class=classes!("skeleton-heading", "-m")
@@ -162,7 +169,11 @@ impl ItemDetail {
                 <Row>
                     { for dummy_product_list.iter().map( |_|
                         html! {
-                            <Col col={6} col_m={4} col_l={2}>
+                            <Col
+                                col=ColNum::Six
+                                col_m=ColNum::Four
+                                col_l=ColNum::Two
+                            >
                                 <SkeletonProductCard />
                             </Col>
                         }

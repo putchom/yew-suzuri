@@ -1,3 +1,4 @@
+use crate::types::background_color::BackgroundColor;
 use yew::prelude::*;
 
 pub struct Card {
@@ -11,7 +12,7 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub color: Option<String>,
+    pub background_color: Option<BackgroundColor>,
 }
 
 impl Component for Card {
@@ -39,13 +40,13 @@ impl Component for Card {
         let Props {
             children,
             class,
-            color,
+            background_color,
         } = &self.props;
 
         let classes: Vec<String> = vec![
             "ncgr-card".to_string(),
-            match color {
-                Some(color) => format!("ncgr-card--{}", color),
+            match background_color {
+                Some(background_color) => format!("ncgr-card--{}", background_color),
                 None => "".to_string(),
             },
         ];

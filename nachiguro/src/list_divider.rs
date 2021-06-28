@@ -1,3 +1,4 @@
+use crate::types::list_divider_element::ListDividerElement;
 use yew::prelude::*;
 
 pub struct ListDivider {
@@ -9,7 +10,7 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub element: String,
+    pub element: ListDividerElement,
 }
 
 impl Component for ListDivider {

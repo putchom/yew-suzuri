@@ -1,6 +1,6 @@
 use crate::components::{product_card::ProductCard, skeleton_product_card::SkeletonProductCard};
 use crate::models::product::Product;
-use nachiguro::{Col, Container, Row};
+use nachiguro::{types::col_num::ColNum, Col, Container, Row};
 use serde::Deserialize;
 use yew::{
     format::Json,
@@ -116,7 +116,11 @@ impl ProductGridView {
                     <Row>
                         { for res.products.iter().map( |product|
                             html! {
-                                <Col col={6} col_m={4} col_l={2}>
+                                <Col
+                                    col=ColNum::Six
+                                    col_m=ColNum::Four
+                                    col_l=ColNum::Two
+                                >
                                     <ProductCard product=product.clone() />
                                 </Col>
                             }
@@ -138,7 +142,11 @@ impl ProductGridView {
             <Row>
                 { for dummy_product_list.iter().map( |_|
                     html! {
-                        <Col col={6} col_m={4} col_l={2}>
+                        <Col
+                            col=ColNum::Six
+                            col_m=ColNum::Four
+                            col_l=ColNum::Two
+                        >
                             <SkeletonProductCard />
                         </Col>
                     }

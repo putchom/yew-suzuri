@@ -1,3 +1,4 @@
+use crate::types::{heading_level::HeadingLevel, size::Size};
 use yew::prelude::*;
 
 pub struct Heading {
@@ -11,9 +12,9 @@ pub struct Props {
     #[prop_or_default]
     pub class: Classes,
     #[prop_or_default]
-    pub level: i8,
+    pub level: HeadingLevel,
     #[prop_or_default]
-    pub size: String,
+    pub size: Size,
 }
 
 impl Component for Heading {

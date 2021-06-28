@@ -127,3 +127,8 @@ pub use text_link::TextLink;
 pub mod textfield;
 #[cfg(feature = "textfield")]
 pub use textfield::Textfield;
+
+#[cfg(feature = "types")]
+pub mod types;
+#[cfg(feature = "types")]
+pub use types::*;
